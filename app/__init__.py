@@ -25,15 +25,18 @@ else:
     app.debug = False
 
     # heruku
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://u8cfl2g3qfs8kq:pdde98a7b527475b9496df5f71a1b1d6997b37ad68c7c65d9177fa085da046b3a@c8lj070d5ubs83.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6c7ebcbhbfj1q'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://u8cfl2g3qfs8kq:pdde98a7b527475b9496df5f71a1b1d6997b37ad68c7c65d9177fa085da046b3a@c8lj070d5ubs83.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d6c7ebcbhbfj1q'
     # local
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12king34pin@localhost/budget_db'
     
     # Render
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budge_files_user:L0lVBVhg8uTzNj1lVSQwr1KGvdOrfJ3a@dpg-cpled0ud3nmc73cv7420-a.oregon-postgres.render.com/budge_files'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budge_files_user:L0lVBVhg8uTzNj1lVSQwr1KGvdOrfJ3a@dpg-cpled0ud3nmc73cv7420-a.oregon-postgres.render.com/budge_files'
 
     # render 2
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budget_files_postgresql_user:cMpSkry294QvkqnSePihpwYCfKI8fcIY@dpg-cqah0vbv2p9s73d18lv0-a.oregon-postgres.render.com/budget_files_postgresql'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budget_files_postgresql_user:cMpSkry294QvkqnSePihpwYCfKI8fcIY@dpg-cqah0vbv2p9s73d18lv0-a.oregon-postgres.render.com/budget_files_postgresql'
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
