@@ -1,0 +1,88 @@
+
+<section class="filters">
+                
+    <div style="background-color: #055041; height: 48px; border-right: 1px solid #DDDDDD;">
+        <p style="text-align: center; line-height: 55px; margin: 0; color: aliceblue;">Budget Files</p>
+    </div>
+
+    {% if current_user.role == 'Admin'  %}
+
+        {% if page == 'home' %} 
+            <a class="active" href="{{ url_for('home') }}">Home</a>
+        {% else %}
+            <a href="{{ url_for('home') }}">Home</a>
+        {% endif %}
+        
+        {% if page == 'approvals' %}
+            <a class="active" href="{{ url_for('approvals') }}">Approvals</a>
+        {% else %}
+            <a href="{{ url_for('approvals') }}">Approvals</a>
+        {% endif %}
+        
+        {% if page == 'transactions' %}
+            <a class="active" href="{{ url_for('transactions') }}">Transactions</a>
+        {% else %}
+            <a href="{{ url_for('transactions') }}">Transactions</a>
+        {% endif %}
+
+        {% if page == 'users' %}
+            <a class="active" href="{{ url_for('users') }}">Users</a>
+        {% else %}
+            <a href="{{ url_for('users') }}">Users</a>
+        {% endif %}
+        
+        {% if page == 'budgets' %}
+            <a class="active" href="{{ url_for('budgets') }}">Budgets</a>
+        {% else %}
+            <a href="{{ url_for('budgets') }}">Budgets</a>
+        {% endif %}
+        
+        {% if page == 'files' %}
+            <a class="active" href="{{ url_for('files') }}">Files</a>
+        {% else %}
+            <a href="{{ url_for('files') }}">Files</a>
+        {% endif %}
+
+        
+        {% if page == 'register' %}
+            <a class="active" href="{{ url_for('register') }}">Register</a>
+        {% else %}
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+
+        {% if page == 'account' %}
+            <a class="active" href="{{ url_for('account', user_id=current_user.id) }}">Accounts</a>
+        {% else %}
+            <a href="{{ url_for('account', user_id=current_user.id) }}">Accounts</a>
+        {% endif %}
+
+    {% else %}
+    
+        {% if page == 'home' %}    
+            <a class="active" href="{{ url_for('home') }}">Home</a>
+        {% else %}
+            <a href="{{ url_for('home') }}">Home</a>
+        {% endif %}
+
+        {% if page == 'transactions' %}
+            <a class="active" href="{{ url_for('transactions') }}">Transactions</a>
+        {% else %}
+            <a href="{{ url_for('transactions') }}">Transactions</a>
+        {% endif %}
+
+        {% if page == 'budgets' %}
+            <a class="active" href="{{ url_for('budgets') }}">Budgets</a>
+        {% else %}
+            <a href="{{ url_for('budgets') }}">Budgets</a>
+        {% endif %}
+
+        {% if page == 'account' %}
+            <a class="active" href="{{ url_for('account', user_id=current_user.id) }}">Accounts</a>
+        {% else %}
+            <a href="{{ url_for('account', user_id=current_user.id) }}">Accounts</a>
+        {% endif %}
+        
+    {% endif %}
+
+
+</section>

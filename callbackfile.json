@@ -1,0 +1,600 @@
+{
+    "ResultType": 0,
+    "ResultCode": 2029,
+    "ResultDesc": "Failed due to an unresolved reason type.",
+    "OriginatorConversationID": "6e86-45dd-91ac-fd5d4178ab523465577",
+    "ConversationID": "AG_20240703_201072d622113b08d8d3",
+    "TransactionID": "SG332NJKV3",
+    "ResultParameters": {
+        "ResultParameter": {
+            "Key": "DebitAccountCurrentBalance",
+            "Value": "{Amount={CurrencyCode=KES, MinimumAmount=133127700, BasicAmount=1331277.00}}"
+        }
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}
+
+"Failed due to an unresolved reason type."
+
+"Failed due to an unresolved reason type."
+
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type."
+"Failed due to an unresolved reason type. 2029"
+
+{
+    "ResultType": 0,
+    "ResultCode": 0,
+    "ResultDesc": "The service request is processed successfully.",
+    "OriginatorConversationID": "53e3-4aa8-9fe0-8fb5e4092cdd3569366",
+    "ConversationID": "AG_20240708_201005bbf4f9fd420f69",
+    "TransactionID": "SG832NNGLN",
+    "ResultParameters": {
+        "ResultParameter": [
+            {
+                "Key": "Currency",
+                "Value": "KES"
+            },
+            {
+                "Key": "ReceiverPartyPublicName",
+                "Value": "000000 - agg"
+            },
+            {
+                "Key": "DebitPartyCharges",
+                "Value": "Business PayBill Charge by DebitParty|KES|8.00"
+            },
+            {
+                "Key": "TransCompletedTime",
+                "Value": 20240708154747
+            },
+            {
+                "Key": "DebitPartyAffectedAccountBalance",
+                "Value": "Working Account|KES|1327267.00|1327267.00|0.00|0.00"
+            },
+            {
+                "Key": "Amount",
+                "Value": 321.0
+            },
+            {
+                "Key": "DebitAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132726700, BasicAmount=1327267.00}}"
+            },
+            {
+                "Key": "InitiatorAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132726700, BasicAmount=1327267.00}}"
+            }
+        ]
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}
+{
+    "ResultType": 0,
+    "ResultCode": 0,
+    "ResultDesc": "The service request is processed successfully.",
+    "OriginatorConversationID": "c0d2-4b9a-a71a-12bae346ef6e3223777",
+    "ConversationID": "AG_20240708_20102fa1ce2f02f3250c",
+    "TransactionID": "SG862NNGM0",
+    "ResultParameters": {
+        "ResultParameter": [
+            {
+                "Key": "Currency",
+                "Value": "KES"
+            },
+            {
+                "Key": "ReceiverPartyPublicName",
+                "Value": "000000 - agg"
+            },
+            {
+                "Key": "DebitPartyCharges",
+                "Value": "Business PayBill Charge by DebitParty|KES|8.00"
+            },
+            {
+                "Key": "TransCompletedTime",
+                "Value": 20240708155150
+            },
+            {
+                "Key": "DebitPartyAffectedAccountBalance",
+                "Value": "Working Account|KES|1327037.00|1327037.00|0.00|0.00"
+            },
+            {
+                "Key": "Amount",
+                "Value": 222.0
+            },
+            {
+                "Key": "DebitAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132703700, BasicAmount=1327037.00}}"
+            },
+            {
+                "Key": "InitiatorAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132703700, BasicAmount=1327037.00}}"
+            }
+        ]
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}
+{
+    "ResultType": 0,
+    "ResultCode": 0,
+    "ResultDesc": "The service request is processed successfully.",
+    "OriginatorConversationID": "6e86-45dd-91ac-fd5d4178ab523592937",
+    "ConversationID": "AG_20240709_201045dd1c9f60d5d12a",
+    "TransactionID": "SG992NO1CR",
+    "ResultParameters": {
+        "ResultParameter": [
+            {
+                "Key": "Currency",
+                "Value": "KES"
+            },
+            {
+                "Key": "ReceiverPartyPublicName",
+                "Value": "000000 - agg"
+            },
+            {
+                "Key": "DebitPartyCharges",
+                "Value": "Business PayBill Charge by DebitParty|KES|2.00"
+            },
+            {
+                "Key": "TransCompletedTime",
+                "Value": 20240709153735
+            },
+            {
+                "Key": "DebitPartyAffectedAccountBalance",
+                "Value": "Working Account|KES|1327025.00|1327025.00|0.00|0.00"
+            },
+            {
+                "Key": "Amount",
+                "Value": 10.0
+            },
+            {
+                "Key": "DebitAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132702500, BasicAmount=1327025.00}}"
+            },
+            {
+                "Key": "InitiatorAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132702500, BasicAmount=1327025.00}}"
+            }
+        ]
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}{
+    "ResultType": 0,
+    "ResultCode": 0,
+    "ResultDesc": "The service request is processed successfully.",
+    "OriginatorConversationID": "d67b-41bd-9947-9a3e7b224ed221025",
+    "ConversationID": "AG_20240710_2010263f45854deb031d",
+    "TransactionID": "SGA72NODGJ",
+    "ResultParameters": {
+        "ResultParameter": [
+            {
+                "Key": "Currency",
+                "Value": "KES"
+            },
+            {
+                "Key": "ReceiverPartyPublicName",
+                "Value": "000000 - agg"
+            },
+            {
+                "Key": "DebitPartyCharges",
+                "Value": "Business PayBill Charge by DebitParty|KES|3.00"
+            },
+            {
+                "Key": "TransCompletedTime",
+                "Value": 20240710140054
+            },
+            {
+                "Key": "DebitPartyAffectedAccountBalance",
+                "Value": "Working Account|KES|1326922.00|1326922.00|0.00|0.00"
+            },
+            {
+                "Key": "Amount",
+                "Value": 100.0
+            },
+            {
+                "Key": "DebitAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132692200, BasicAmount=1326922.00}}"
+            },
+            {
+                "Key": "InitiatorAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132692200, BasicAmount=1326922.00}}"
+            }
+        ]
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}
+
+{
+    "ResultType": 0,
+    "ResultCode": 2029,
+    "ResultDesc": "Failed due to an unresolved reason type.",
+    "OriginatorConversationID": "2654-4b64-97ff-b827b542881d135685",
+    "ConversationID": "AG_20240716_20107b8f29292d6aa108",
+    "TransactionID": "SGG32NRQS7",
+    "ResultParameters": {
+        "ResultParameter": {
+            "Key": "DebitAccountCurrentBalance",
+            "Value": "{Amount={CurrencyCode=KES, MinimumAmount=19792100, BasicAmount=197921.00}}"
+        }
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"Failed due to an unresolved reason type."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2029,
+    "ResultDesc": "Failed due to an unresolved reason type.",
+    "OriginatorConversationID": "6e86-45dd-91ac-fd5d4178ab523740114",
+    "ConversationID": "AG_20240716_20105cd80178d3fbacc1",
+    "TransactionID": "SGG82NRQSM",
+    "ResultParameters": {
+        "ResultParameter": {
+            "Key": "DebitAccountCurrentBalance",
+            "Value": "{Amount={CurrencyCode=KES, MinimumAmount=19792100, BasicAmount=197921.00}}"
+        }
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"Failed due to an unresolved reason type."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2029,
+    "ResultDesc": "Failed due to an unresolved reason type.",
+    "OriginatorConversationID": "6e86-45dd-91ac-fd5d4178ab523740114",
+    "ConversationID": "AG_20240716_20105cd80178d3fbacc1",
+    "TransactionID": "SGG82NRQSM",
+    "ResultParameters": {
+        "ResultParameter": {
+            "Key": "DebitAccountCurrentBalance",
+            "Value": "{Amount={CurrencyCode=KES, MinimumAmount=19792100, BasicAmount=197921.00}}"
+        }
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"Failed due to an unresolved reason type."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2029,
+    "ResultDesc": "Failed due to an unresolved reason type.",
+    "OriginatorConversationID": "6e86-45dd-91ac-fd5d4178ab523740114",
+    "ConversationID": "AG_20240716_20105cd80178d3fbacc1",
+    "TransactionID": "SGG82NRQSM",
+    "ResultParameters": {
+        "ResultParameter": {
+            "Key": "DebitAccountCurrentBalance",
+            "Value": "{Amount={CurrencyCode=KES, MinimumAmount=19792100, BasicAmount=197921.00}}"
+        }
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"Failed due to an unresolved reason type."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2001,
+    "ResultDesc": "The initiator information is invalid.",
+    "OriginatorConversationID": "7071-4170-a0e4-8345632bad441593706",
+    "ConversationID": "AG_20240716_20103272e45e910397a4",
+    "TransactionID": "SGG0000000",
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"The initiator information is invalid."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2001,
+    "ResultDesc": "The initiator information is invalid.",
+    "OriginatorConversationID": "7071-4170-a0e4-8345632bad441593706",
+    "ConversationID": "AG_20240716_20103272e45e910397a4",
+    "TransactionID": "SGG0000000",
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"The initiator information is invalid."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2001,
+    "ResultDesc": "The initiator information is invalid.",
+    "OriginatorConversationID": "1c5b-4ba8-815c-ac45c57a3db01596620",
+    "ConversationID": "AG_20240716_20101c48ee3974b56cfb",
+    "TransactionID": "SGG0000000",
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"The initiator information is invalid."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2001,
+    "ResultDesc": "The initiator information is invalid.",
+    "OriginatorConversationID": "1c5b-4ba8-815c-ac45c57a3db01596620",
+    "ConversationID": "AG_20240716_20101c48ee3974b56cfb",
+    "TransactionID": "SGG0000000",
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"The initiator information is invalid."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2001,
+    "ResultDesc": "The initiator information is invalid.",
+    "OriginatorConversationID": "7071-4170-a0e4-8345632bad441593844",
+    "ConversationID": "AG_20240716_20106259344ae69b24d0",
+    "TransactionID": "SGG0000000",
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"The initiator information is invalid."
+
+{
+    "ResultType": 0,
+    "ResultCode": 2001,
+    "ResultDesc": "The initiator information is invalid.",
+    "OriginatorConversationID": "7071-4170-a0e4-8345632bad441593844",
+    "ConversationID": "AG_20240716_20106259344ae69b24d0",
+    "TransactionID": "SGG0000000",
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"The initiator information is invalid."
+
+{
+    "ResultType": 0,
+    "ResultCode": 0,
+    "ResultDesc": "The service request is processed successfully.",
+    "OriginatorConversationID": "3b82-4048-94fd-4503f39b858f119529",
+    "ConversationID": "AG_20240716_20102f37f6bca05dc5a9",
+    "TransactionID": "SGG32NRQUP",
+    "ResultParameters": {
+        "ResultParameter": [
+            {
+                "Key": "Currency",
+                "Value": "KES"
+            },
+            {
+                "Key": "ReceiverPartyPublicName",
+                "Value": "000000 - agg"
+            },
+            {
+                "Key": "DebitPartyCharges",
+                "Value": "Business PayBill Charge by DebitParty|KES|2.00"
+            },
+            {
+                "Key": "TransCompletedTime",
+                "Value": 20240716225229
+            },
+            {
+                "Key": "DebitPartyAffectedAccountBalance",
+                "Value": "Working Account|KES|1325546.00|1325546.00|0.00|0.00"
+            },
+            {
+                "Key": "Amount",
+                "Value": 10.0
+            },
+            {
+                "Key": "DebitAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132554600, BasicAmount=1325546.00}}"
+            },
+            {
+                "Key": "InitiatorAccountCurrentBalance",
+                "Value": "{Amount={CurrencyCode=KES, MinimumAmount=132554600, BasicAmount=1325546.00}}"
+            }
+        ]
+    },
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "BillReferenceNumber",
+                "Value": 353353
+            },
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}{
+    "ResultType": 0,
+    "ResultCode": 2001,
+    "ResultDesc": "The initiator information is invalid.",
+    "OriginatorConversationID": "7071-4170-a0e4-8345632bad441593844",
+    "ConversationID": "AG_20240716_20106259344ae69b24d0",
+    "TransactionID": "SGG0000000",
+    "ReferenceData": {
+        "ReferenceItem": [
+            {
+                "Key": "QueueTimeoutURL",
+                "Value": "https://internalsandbox.safaricom.co.ke/mpesa/b2bresults/v1/submit"
+            },
+            {
+                "Key": "Occassion"
+            }
+        ]
+    }
+}"The initiator information is invalid."

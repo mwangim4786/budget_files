@@ -1,0 +1,78 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+<div class="content">
+
+    <section class="places">
+
+        <!-- <div class="card w-50">
+            <div class="card-body">
+                
+                <h5 class="card-title">Pending</h5>
+                
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Amount:</b> {{ resp_data.amount }}</li>
+                    <li class="list-group-item"><b>Paid to Paybill:</b> {{ resp_data.paybill }}</li>
+                    <li class="list-group-item"><b>Transaction Ref:</b> {{ resp_details.ConversationID }}</li>
+                </ul>
+                <div class="form-group row">
+                    <div class="col-sm-9">
+                        <a role="button" class="btn btn-outline-warning btn-sm mt-3 pb-0">Confirm</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" data-backdrop='static' id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="card-title">Request Sent.</h5>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Amount:</b> ksh {{ resp_data.amount }}</li>
+                        <li class="list-group-item"><b>Paid to Paybill:</b> {{ resp_data.paybill }}</li>
+                        <li class="list-group-item"><b>Transaction Ref:</b> {{ resp_details.ConversationID }}</li>
+                        <li class="list-group-item"><b>For File:</b> {{ resp_data.file_no }}</li>
+                        <li class="list-group-item"><b>Status:</b> <div class="alert alert-sm alert-warning" role="alert"> Pending </div></li>
+                    </ul>
+                    
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group row">
+                        <div class="col-sm-9">  
+                            <form action="{{ url_for('confirm_payment', merchant_req_id=resp_details.ConversationID) }}" method="post">
+                                <input class="btn btn-outline-success btn-sm mt-3 pb-0" type="submit" value="Confirm Payment">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock contents %}

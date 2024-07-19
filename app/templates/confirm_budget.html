@@ -1,0 +1,109 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+<div class="content">
+
+    <section class="places">
+
+        {% if user.phone == current_user.phone or current_user.role == 'Admin' %}
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Confirm Budget</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>Amount:</b> {{ budget.amount }}</li>
+                                <li class="list-group-item"><b>Date:</b> {{ budget.date.strftime('%d-%m-%Y, %H:%M') }}</li>
+                                {% if budget.status == 0 %}
+                                    <li class="list-group-item"><b>Status:</b> <span style="padding: 5px;" class="alert alert alert-warning alert-heading" role="alert"> Pending </span> </li>
+                                {% elif budget.status == 1 %}
+                                    <li class="list-group-item"><b>Status:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> Approved </span> </li>
+                                {% endif %}
+                                <li class="list-group-item"><b>Name:</b> {{ budget.phone.name }}</li>
+                            </ul>
+                            <div class="form-group row">
+                                {% if budget.status == 0 %}
+                                    <div class="col-sm-9">
+                                        <a role="button" href="{{ url_for('approve_budget', budget_id=budget.id, approve_string='approve') }}" class="btn btn-outline-success btn-sm mt-1">Approve</a>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a role="button" href="{{ url_for('approve_budget', budget_id=budget.id, approve_string='disapprove') }}" class="btn btn-outline-danger btn-sm mt-1">Reject</a>
+                                    </div>
+                                {% elif budget.status == 1 %}
+        
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"></b> {{ budget.bdgt_name }}</h5>
+                            <ul class="list-group list-group-flush">
+                                {% for purpose_vals in budget_ppse %}
+                                    {% set amount = purpose_vals['amount'] %}
+                                    {% set purpose = purpose_vals['purpose'] %}
+                                    <li class="list-group-item"><b>{{ purpose }}:</b> {{ amount }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            
+        {% endif %}
+
+        
+        
+
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Delete Budget -->
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete User?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    <form  method="post">
+                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                    </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock contents %}

@@ -1,0 +1,27 @@
+{% extends "page_template.html" %}
+<!-- {% set active_page = "approvals" %} -->
+{% block contents %}
+
+
+<div class="content">
+
+    <section class="places">
+
+        <h1>Home</h1>
+
+        
+                
+        <!-- Delete all records in transactions table. -->
+        <div style="overflow: hidden; float: right;">
+            <a href="{{ url_for('delete_rec') }}" style="text-decoration: none;"><button type="button" class="btn btn-outline-info mt-3 pb-0">del</button></a>
+        </div>
+
+
+
+
+
+    </section>
+
+</div>
+
+{% endblock contents %}

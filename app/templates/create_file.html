@@ -1,0 +1,114 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+
+    <div class="content">
+
+        <section class="places">
+
+            <h1>{{ title }}</h1>
+
+            <form action="" method="POST">
+                <!-- hidden_tag() method adds CSRF token -->
+                {{ form.hidden_tag() }} 
+                <fieldset>
+                    <legend style="text-align: center;">{{ legend }}</legend>
+                    <!-- Input Fields -->
+                    <div class="form-group row">
+                        {{ form.file_no.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.file_no.errors %}
+                                {{ form.file_no(class="form-control is-invalid", readonly=True) }}
+                                <div>
+                                    {% for error in form.file_no.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.file_no(class="form-control", readonly=True) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        {{ form.file_name.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.file_name.errors %}
+                                {{ form.file_name(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.file_name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.file_name(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        {{ form.subject.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.subject.errors %}
+                                {{ form.subject(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.subject.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.subject(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        {{ form.file_fee.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.file_fee.errors %}
+                                {{ form.file_fee(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.file_fee.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.file_fee(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+
+                    <!--  -->
+                </fieldset>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        {{ form.submit(class="btn btn-info") }}
+                    </div>
+                </div>
+            </form>
+
+
+    
+            <hr>
+
+
+
+        </section>
+
+    </div>
+
+
+
+{% endblock contents %}

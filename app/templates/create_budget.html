@@ -1,0 +1,205 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+
+    <div class="content">
+
+        <section class="places">
+
+            <h1>{{ available_funds }}</h1>
+
+
+                
+
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                        
+                                <form action="" method="POST">
+                                    <!-- hidden_tag() method adds CSRF token -->
+                                    {{ form.hidden_tag() }} 
+                                    <fieldset>
+                                        <legend>{{ legend }}</legend>
+                                        <!-- Input Fields -->
+                                        <div class="form-group row">
+                                            {{ form.name.label(class="col-sm-2 col-form-label") }}
+                                            <div class="col-sm-10">
+                                                <!-- check for errors on submit -->
+                                                {% if form.name.errors %}
+                                                    {{ form.name(class="form-control is-invalid") }}
+                                                    <div>
+                                                        {% for error in form.name.errors %}
+                                                            <span>{{ error }}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    <!-- if no errors -->
+                                                    {{ form.name(class="form-control") }}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            {{ form.amount.label(class="col-sm-2 col-form-label") }}
+                                            <div class="col-sm-10">
+                                                <!-- check for errors on submit -->
+                                                {% if form.amount.errors %}
+                                                    {{ form.amount(class="form-control is-invalid", id="total1", readonly=True) }}
+                                                    <div>
+                                                        {% for error in form.amount.errors %}
+                                                            <span>{{ error }}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    <!-- if no errors -->
+                                                    {{ form.amount(class="form-control", id="total1", readonly=True) }}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group row">
+                                            <!-- {{ form.purpose.label(class="col-sm-2 col-form-label") }} -->
+                                            <div class="col-sm-10">
+                                                <!-- check for errors on submit -->
+                                                {% if form.purpose.errors %}
+                                                    {{ form.purpose(class="form-control is-invalid", id="array1", readonly=True, hidden=True) }}
+                                                    <div>
+                                                        {% for error in form.purpose.errors %}
+                                                            <span>{{ error }}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    <!-- if no errors -->
+                                                    {{ form.purpose(class="form-control", id="array1", readonly=True, hidden=True) }}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+
+                                        <!--  -->
+                                    </fieldset>
+                                    <div class="form-group row">
+                                        <div class="col-sm-8">
+                                            {{ form.submit(class="btn btn-sm btn-outline-info") }}
+                                        </div>
+                                        <div class="col-sm-2">
+                                            {{ delete_bdgt | safe }}
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                {% if url == 'update' %}
+                                <div class="row text-center">
+                                    <div class="col-sm-5">
+                                        <label for="exampleInputEmail1">Purpose</label>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="exampleInputEmail1">Amount</label>
+                                    </div>
+                                </div>
+                                    {% for edit_val in edit_vals %}
+                                        {% set amount = edit_val['amount'] %}
+                                        <div class="row mb-3">
+                                            <div class="col-sm-5">
+                                                <input class="ppse" type="text" class="form-control" value=" {{ edit_val['purpose'] }} ">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <input class="amnt" type="text" class="form-control" value=" {{ amount|int }} ">
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <input type="button" id="add_btn" class="btn btn-sm btn-outline-secondary" value="Add">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-5">
+                                            <input class="ppse" type="text" class="form-control" id="purpose1" placeholder="Purpose 1">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input class="amnt" type="number" class="form-control" id="amount1" placeholder="Amount 1">
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input type="button" id="cancelBtn" class="removeBtn btn btn-sm btn-outline-secondary" value="X">
+                                        </div>
+                                    </div>
+
+                                    <span id="appnd"></span>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                
+
+
+    
+            <hr>
+
+
+
+
+
+
+
+
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+    
+    <!-- Delete Budget -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Delete Budget?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                {% if phone == current_user %}
+                    <form action="{{ url_for('delete_budget', budget_id=del_id) }}" method="post">
+                        <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                    </form>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock contents %}

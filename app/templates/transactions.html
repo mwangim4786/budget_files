@@ -1,0 +1,122 @@
+
+{% extends "page_template.html" %}
+{% block contents %}
+
+    <div class="content">
+
+        <section class="places">
+
+            <div style="float: left;">
+                <h1>Transactions</h1>
+            </div>
+            
+            <!-- <div style="overflow: hidden; float: right;">
+                <a role="button" class="btn btn-outline-info btn-sm mt-3 pb-0" data-toggle="modal" data-target="#paymentModal">Pay</a>
+            </div> -->
+
+            <div style="overflow: hidden; float: right;">
+                <a href="{{ url_for('payment_request') }}" style="text-decoration: none;"><button type="button" class="btn btn-outline-info mt-3 pb-0">Make Payment</button></a>
+            </div>
+
+
+
+            <table id="transactions_table" class="display" style="width:100%">
+                <thead style="background: #055041; color: #FFFFFF">
+                    <th class="text-center" style="padding: 5px;">Status</th>
+                    <th class="text-center" style="padding: 5px;">Amount</th>
+                    <th class="text-center" style="padding: 5px;">Date</th>
+                    <th class="text-center" style="padding: 5px;">Merchant Id</th>
+                    <th class="text-center" style="padding: 5px;">Mpesa Ref</th>
+                    <th class="text-center" style="padding: 5px;">Budget ID</th>
+                    <th class="text-center" style="padding: 5px;">User</th>
+                    <th class="text-center" style="padding: 5px;">Role</th>
+                </thead>
+                <tbody>
+                    
+                    {% if transactions %}
+                    
+                        {% for transaction in transactions %}
+                        <tr class="transactions_row">
+                            {% if transaction['status'] == '0' %}
+                                <td class="text-center" style="padding: 5px;"> <div style="padding: 0; margin: 1px auto;" class="alert alert alert-success alert-heading" role="alert"> Success </div> </td>
+                            {% endif %}
+                            <td class="text-center" style="padding: 5px;">{{ transaction['amount'] }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ transaction['trans_date'] }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ transaction['merchant_req_id'] }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ transaction['mpesa_ref'] }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ transaction['budget'] }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ transaction.phone.name }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ transaction.phone.role }}</td>
+                        </tr>
+                        {% endfor %}
+                    
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+
+
+
+
+            <!-- <article>
+                <h1>Article One</h1>
+            </article>
+
+            <article>
+                <h1>Article Two</h1>
+            </article>
+
+            <article>
+                <h1>Article Three</h1>
+            </article> -->
+
+
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+{% endblock contents %}
+
+
+
+
+
+
+
+
+
+
+

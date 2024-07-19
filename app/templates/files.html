@@ -1,0 +1,85 @@
+
+{% extends "page_template.html" %}
+{% block contents %}
+
+    <div class="content">
+
+        <section class="places">
+
+            <div style="float: left;">
+                <h1>Files</h1>
+            </div>
+           
+
+            <div style="overflow: hidden; float: right;">
+                <a href="{{ url_for('create_file') }}" style="text-decoration: none;"><button type="button" class="btn btn-outline-info mt-3 pb-0">Create File</button></a>
+            </div>
+
+
+
+            <table id="transactions_table" class="display" style="width:100%">
+                <thead style="background: #055041; color: #FFFFFF">
+                    <th class="text-center" style="padding: 5px;">File No.</th>
+                    <th class="text-center" style="padding: 5px;">File Name</th>
+                    <th class="text-center" style="padding: 5px;">Subject</th>
+                    <th class="text-center" style="padding: 5px;">File Fee</th>
+                </thead>
+                <tbody>
+                    
+                    {% if files %}
+                    
+                        {% for file in files %}
+                        <tr class="files_row">
+                            <td class="text-center" style="padding: 5px;">{{ file.file_no }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ file.file_name }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ file.subject }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ file.file_fee }}</td>
+                        </tr>
+                        {% endfor %}
+                    
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+
+
+
+
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+{% endblock contents %}

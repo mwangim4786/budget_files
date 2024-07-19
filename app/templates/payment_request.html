@@ -1,0 +1,127 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+
+    <div class="content">
+
+        <section class="places">
+
+            <h1>{{ title }}</h1>
+
+
+
+            <form action="" method="POST">
+                <!-- hidden_tag() method adds CSRF token -->
+                {{ form.hidden_tag() }} 
+                <fieldset>
+                    <!-- Input Fields -->
+                    <legend>{{ code }}</legend>
+                    <div class="form-group row">
+                        {{ form.amount.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.amount.errors %}
+                                {{ form.amount(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.amount.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.amount(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        {{ form.paybill.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.paybill.errors %}
+                                {{ form.paybill(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.paybill.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.paybill(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        {{ form.file_no.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.file_no.errors %}
+                                {{ form.file_no(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.file_no.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.file_no(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        {{ form.budget_no.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.budget_no.errors %}
+                                {{ form.budget_no(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.budget_no.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.budget_no(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+
+                    <!--  -->
+                </fieldset>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        {{ form.submit(class="btn btn-info") }}
+                    </div>
+                </div>
+            </form>
+
+
+            
+    
+            <hr>
+
+
+
+
+
+
+
+
+        </section>
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock contents %}

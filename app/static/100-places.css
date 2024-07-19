@@ -1,0 +1,117 @@
+.places {
+	/* display: flex; */
+	/* justify-content: center; */
+	/* flex-wrap: wrap; */
+	/* margin: 5px auto; */
+	padding: 10px;
+	/* text-align: center; */
+}
+
+.error_page {
+	margin-top: 50px;
+	padding: 10px;
+	text-align: center;
+}
+
+
+article {
+	display: flex;
+	width: 390px;
+	flex: none;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-content: flex-start;
+
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 40px;
+	margin: 20px;
+
+	/* border: 1px solid #FF5A5F; */
+	border-radius: 4px;
+}
+
+.information {
+	display: block;
+	height: 80px;
+	width: 100%;
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+
+	padding-top: 5px;
+	padding-bottom: 12px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.user {
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+.description {
+	text-align: left;
+}
+
+h1 {
+	display: block;
+	/* text-align: left; */
+	width: 95%;
+	display: block;
+	margin-top: 0px;
+	margin-left: 20px;
+	margin-bottom: 5px;
+	font-size: 30px;
+}
+
+article .amenities {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-top: 40px;
+}
+
+.article_subtitle {
+	font-size: 16px;
+	text-align: left;
+	width: 100%;
+	border-bottom: 1px solid #DDDDDD;
+	padding: 0px;
+	margin: 0px;
+	padding-bottom: 10px;
+}
+
+.article_title {
+	font-size: 30px;
+	margin: 10px auto;
+	padding: 0px;
+}
+
+article ul {
+	text-align: left;
+	margin-top: 20px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+article li {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-content: flex-start;
+	margin-bottom: 10px;
+}
+
+.reviews {
+	margin-top: 40px;
+	width: 100%;
+}
+
+article h3 {
+	font-size: 14px;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 5px;
+}
+

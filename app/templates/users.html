@@ -1,0 +1,250 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+
+    <div class="content">
+
+        <section class="places">
+
+            <div style="float: left;">
+                <h1>Users</h1>
+            </div>
+            
+            <div style="overflow: hidden; float: right;">
+                <!-- Button trigger modal -->
+                <a href="{{ url_for('register') }}" style="text-decoration: none;">
+                    <button type="button" class="btn btn-info">
+                        Register user
+                    </button>
+                </a>
+            </div>
+                
+
+            <!-- <nav class="nav">
+                <a class="nav-link disabled" style="color: rgb(15, 131, 232);" href="{{ url_for('login') }}">Log In</a>
+                <a class="nav-link active" style="color: rgb(15, 131, 232);" href="{{ url_for('register') }}">Register</a>
+            </nav> -->
+
+
+            <!-- <nav class="nav nav-pills nav-justified ">
+                <a class="nav-link disabled"><h1>Users</h1></a>
+                <a class="nav-link active" style="float: right;" href="#"><button type="button" class="btn btn-info btn-sm">Active</button></a>
+            </nav> -->
+
+
+
+
+
+            <table id="users_table" class="display" style="width:100%">
+                <thead style="background: #055041; color: #FFFFFF">
+                    <th style="padding: 5px;">Name</th>
+                    <th style="padding: 5px;">Email</th>
+                    <th style="padding: 5px;">Phone</th>
+                    <th style="padding: 5px;">Role</th>
+                    <th style="padding: 5px;">Date</th>
+                </thead>
+                <tbody>
+                    
+                    {% if users %}
+                    
+                        {% for user in users %}
+                        <tr class="users_row">
+                            <td style="padding: 5px;"><a href="{{ url_for('account', user_id=user.id) }}" style="text-decoration: none; color: inherit;">{{ user.name }}</a></td>
+                            <td style="padding: 5px;">{{ user.email }}</td>
+                            <td style="padding: 5px;">{{ user.phone }}</td>
+                            <td style="padding: 5px;">{{ user.role }}</td>
+                            <td style="padding: 5px;">{{ user.date }}</td>
+                        </tr>
+                        {% endfor %}
+                    
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    
+                        <form action="/users" method="POST">
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Role</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="role" class="form-control" id="role" placeholder="Role">
+                                </div>
+                            </div>
+                              
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                                </div>
+                            </div>
+                            
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- Edit User Modal -->
+            <div class="modal fade" id="modal_edit_user" tabindex="-1" role="dialog" aria-labelledby="modal_edit_userTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal_edit_userTitle">Edit User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    
+                        <form action="/users" method="POST">
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="edit_name" id="edit_name" class="form-control" id="inputEmail3" placeholder="Name">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" name="edit_email" id="edit_email" class="form-control" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="edit_phone" id="edit_phone" class="form-control" id="inputEmail3" placeholder="Phone">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Role</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="edit_role" id="edit_role" class="form-control" id="inputEmail3" placeholder="Role">
+                                </div>
+                            </div>
+                              
+                            <div class="form-group row">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="edit_password" id="edit_password" class="form-control" id="inputPassword3" placeholder="Enter Password">
+                                </div>
+                            </div>
+                            
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- <form action="/checkout" method="POST">
+               
+                <div>
+                    <label for="amount" class="form-label">Phone No</label>
+                    <input type="text" class="form-control" id="phone_no" name="phone_no">
+                </div>
+
+                <div>
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="text" class="form-control form-control-sm" id="amount" name="amount">
+                </div>
+
+                <button type="submit" class="btn btn-success">MPESA</button>
+            </form> -->
+
+
+
+
+
+
+
+
+        </section>
+
+    </div>
+
+
+{% endblock contents %}

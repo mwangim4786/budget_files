@@ -1,0 +1,68 @@
+{% extends "page_template.html" %}
+{% block contents %}
+    {% if budget %}
+
+        <div class="content">
+
+            <section class="places">
+
+                <div style="float: left;">
+                    <h1>My Budgets</h1>
+                </div>
+                
+                <div style="overflow: hidden; float: right;">
+                    <!-- Button trigger modal -->
+                    <a href="{{ url_for('create_budget') }}" style="text-decoration: none;">
+                        <button type="button" class="btn btn-outline-info">
+                            Request new budget
+                        </button>
+                    </a>
+                </div>
+                    
+
+
+
+                <table id="users_table" class="display" style="width:100%">
+                    <thead style="background: #055041; color: #FFFFFF">
+                        <th style="padding: 5px;">Amount</th>
+                        <th style="padding: 5px;">Date</th>
+                        <th style="padding: 5px;">Name</th>
+                        <th style="padding: 5px;">Phone</th>
+                        <th style="padding: 5px;">Role</th>
+                        <th style="padding: 5px;">Purpose</th>
+                        <th style="padding: 5px;">Action</th>
+                    </thead>
+                    <tbody>
+                        
+                    
+                        <tr>
+                            <td style="padding: 5px;">{{ budget.amount }}</td>
+                            <td style="padding: 5px;">{{ budget.date.strftime('%d-%m-%Y, %H:%M') }}</td>
+                            <td style="padding: 5px;">{{ budget.phone.name }}</td>
+                            <td style="padding: 5px;">{{ budget.phone.phone }}</td>
+                            <td style="padding: 5px;">{{ budget.phone.role }}</td>
+                            <td style="padding: 5px;">{{ budget.purpose }}</td>
+                            <td style="padding: 5px;">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <button type="button" class="btn btn-warning btn-sm" >Edit</button>
+                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                        
+                    </tbody>
+                </table>
+
+
+
+
+
+
+
+            </section>
+
+        </div>
+
+    {% endif %}
+{% endblock contents %}

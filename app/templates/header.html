@@ -1,0 +1,34 @@
+
+
+<header>
+    <div class="user">
+        {% if current_user.is_authenticated %}
+            <nav class="nav">
+                <a class="nav-link disabled" style="color: aliceblue;" href="#">{{ current_user.name }}</a>
+                <div class="dropdown show">
+                    <a class="dropdown-toggle nav-link active" style="color: aliceblue;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Logout
+                    </a>
+                  
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="{{ url_for('logout') }}">Confirm Logout</a>
+                    </div>
+                  </div>
+
+
+
+
+            </nav>
+        {% else %}
+            <nav class="nav">
+                <a class="nav-link disabled" style="color: aliceblue;" href="{{ url_for('login') }}">Log In</a>
+                <a class="nav-link active" style="color: aliceblue;" href="{{ url_for('register') }}">Register</a>
+            </nav>
+        {% endif %}
+    </div>
+    <!-- <button style="border-right: 1px grey solid;">Search</button>
+    <button style="border-right: 1px grey solid;">Search</button>
+    <button >Search</button> -->
+</header>
+
+
