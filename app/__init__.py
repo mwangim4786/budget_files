@@ -10,8 +10,8 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-ENV = 'dev'
-# ENV = 'prod'
+# ENV = 'dev'
+ENV = 'prod'
 # secret key protects against modifying cookies, cross-site requests forgery atttacks etc.
 app.config['SECRET_KEY'] = '15363711818daf0f83459c25f7017a90'
 
