@@ -35,7 +35,7 @@ else:
     # render 2
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budget_files_postgresql_user:cMpSkry294QvkqnSePihpwYCfKI8fcIY@dpg-cqah0vbv2p9s73d18lv0-a.oregon-postgres.render.com/budget_files_postgresql'
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URI")
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
