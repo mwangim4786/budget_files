@@ -410,7 +410,6 @@ def payment_request():
         partyB = form.paybill.data
         file = str(form.file_no.data)
         budgetId = form.budget_no.data
-        print(budgetId)
 
         # -----------------------------------------------------------------------------
         budget = Budget.query.get_or_404(budgetId)
@@ -422,11 +421,12 @@ def payment_request():
                 trans_amnt_list.append(trans_amount)
         utilised_funds = sum(trans_amnt_list)
         available_funds = budget.amount - utilised_funds
-        if budget.amount < available_funds:
-            flash('Insufficient funds for this transaction!'+budgetId+'', 'warning')
+        if amount > available_funds:
+            flash('Insufficient funds for this transaction! You can utilise only up to '+str(available_funds)+' '+budgetId+'', 'warning')
             return redirect(url_for('transactions'))
         # -----------------------------------------------------------------------------
 
+        print(budgetId)
 
         
         session["budgetId"] = budgetId
@@ -439,7 +439,7 @@ def payment_request():
         public_key = "-----BEGIN CERTIFICATE-----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-----END CERTIFICATE-----"
         security_credential = base64.b64encode((initiator_pass + public_key).encode('utf-8')).decode()
         # securityCredential = "FkNWT9e5UOQPvs3fDqmZQ0sQn9gjQtlyn71IVqSeSzFjSarWJ1sPZHXzxQrquzPbaTTEeoWaB0D7rNfhgOqyash1n74qIhmNE4JsUC1IExWABY2risn7uzxPA2DToE1lVnV9EJAOvaq0uWlMhRnmInTS21samw2OGISATYkPmqVDIiTjEsyFjZNkdF996YYXGpocYKD437SuRVSGPQWdf5/ZauojPLiCXoFkmKVTayU2Dg+3yFszLlSyQ0ceVZACqFPGeJDTLNHG76y54bzvDLXbT1NZIezTl2mW3sbtTh0jvIUVKnyfD2oEXMNzz+jHugi/iShla0JeIJZRhwh1IQ=="
-        securityCredential = "ZdWTIszTXMkF07d8tPQKxwLYSqBhWODLzu66+m5uXBgdg8mGmUQRVjjdo16KqRKKpwl5SLzjTzyLBKncYHew2iuSZzBeBzG4k7U7g8SO+ThizuM7UvFSHTj0AchQqBRppcFcYFnIo8t+QmfNfnqbsYGnT/nd0biR7Cn1G8w1UE7kTYBsY5TkB4WzmleByvyzGMpiz9UQHGIv9q3yrKmdH3+Akw80u8ibMriN1iyQFORILZvpA7pfsjr0VIC9sV0hFh632fuskT4biklhn4CbOCmpAkfCe90mf2GEUCsQBjLJ1WR1ewFuLPiJvxPEsywv5Kr9q8vRmlEMoQXDcaqhEw=="
+        securityCredential = "DRlkitTiyKFA1GoqQ+h5+jwfj5lWm50Z6eBomrMa1IDOxkBTaXePKywiC7V0a/ZCGfU+dKjwX1MpytNrQEjdgYWMsSgll6zldhfADBfZLApvHEaMEl0F0k+FNnRpU7QgY99v2IRCqRYW1A5AkOezEdHTDgZ1S6Hx0LOqL2uGkr5oOowyR5PF6LxzD+SAkQfABDASGWN+7LX+PwZuMZ/5Gd0DRSkeqFpPjg4KNxaZurb0FGQ/fwdGGs28csHCZd6ogt31mYaaI3/yOOM6FhPvj6r/E7Mc6o0IA9WHkhRxEfWBLgtF+UvvabN9eSfQGVif8Vb8YFjAQ+HFSsjZsReewA=="
 
         url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest'
         headers = {
@@ -458,8 +458,8 @@ def payment_request():
             "AccountReference": "353353",
             "Requester": "254700000000",
             "Remarks": "OK",
-            "QueueTimeOutURL": "https://2523-105-161-179-248.ngrok-free.app/callback",
-            "ResultURL": "https://2523-105-161-179-248.ngrok-free.app/callback",
+            "QueueTimeOutURL": "https://budgetfiles.onrender.com//callback",
+            "ResultURL": "https://budgetfiles.onrender.com//callback",
         }
 
         try:

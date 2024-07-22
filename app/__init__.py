@@ -10,8 +10,8 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-# ENV = 'dev'
-ENV = 'prod'
+ENV = 'dev'
+# ENV = 'prod'
 # secret key protects against modifying cookies, cross-site requests forgery atttacks etc.
 app.config['SECRET_KEY'] = '15363711818daf0f83459c25f7017a90'
 
@@ -33,9 +33,9 @@ else:
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budge_files_user:L0lVBVhg8uTzNj1lVSQwr1KGvdOrfJ3a@dpg-cpled0ud3nmc73cv7420-a.oregon-postgres.render.com/budge_files'
 
     # render 2
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budget_files_postgresql_user:cMpSkry294QvkqnSePihpwYCfKI8fcIY@dpg-cqah0vbv2p9s73d18lv0-a.oregon-postgres.render.com/budget_files_postgresql'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://budget_files_postgresql_user:cMpSkry294QvkqnSePihpwYCfKI8fcIY@dpg-cqah0vbv2p9s73d18lv0-a.oregon-postgres.render.com/budget_files_postgresql'
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
