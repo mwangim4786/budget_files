@@ -40,6 +40,7 @@ class Transaction(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(Users.id), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     budget = db.Column(db.Integer, nullable=False)
+    file = db.Column(db.String(20),nullable=True)
     trans_date = db.Column(db.DateTime(), nullable=False)
     status = db.Column(db.String(20), nullable=False)
     merchant_req_id = db.Column(db.String(40),nullable=True)

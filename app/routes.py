@@ -401,6 +401,7 @@ def payment_request():
 
         
         session["budgetId"] = budgetId
+        session["fileId"] = file
 
         
     
@@ -520,6 +521,13 @@ def approve_budget(budget_id, approve_string):
 def handle_callback():
     json_repsonse = request.get_json()
     result = json_repsonse["Result"]
+
+    # --------------- Write to file ------------------------------------------------------------
+    msg = json_repsonse
+
+    with open("callbackfile.json", "a") as f:
+        json.dump(msg, f)
+    # ---------------------------------------------------------------------------
     
     status = result['ResultCode']
     if status == 0:
@@ -534,8 +542,9 @@ def handle_callback():
         transaction_id = str(uuid.uuid4())
         user_id = 1
         budget = 0
+        file = '-'
 
-        trans = Transaction(transaction_id=transaction_id, mpesa_ref=mpesa_ref, merchant_req_id=merchant_req_id, trans_date=trans_date, status=status, amount=amount, user_id=user_id, budget=budget)
+        trans = Transaction(transaction_id=transaction_id, mpesa_ref=mpesa_ref, merchant_req_id=merchant_req_id, trans_date=trans_date, status=status, amount=amount, user_id=user_id, budget=budget, file=file)
         db.session.add(trans)
         db.session.commit()
         
@@ -603,8 +612,10 @@ def confirm_payment(merchant_req_id):
         if payment:
             count = 5
             budget = session.get("budgetId", None)
+            fileNo = session.get("fileId", None)
             payment.user_id = current_user.id
             payment.budget = budget
+            payment.file = fileNo
             
             db.session.commit()
             if payment.status == '0':
