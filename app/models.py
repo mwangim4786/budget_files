@@ -35,7 +35,7 @@ class Users(db.Model, UserMixin):
 class Transaction(db.Model):
     __tablename__ = 'transactions_table'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    transaction_id = db.Column(db.String(30), unique=True, nullable=False)
+    transaction_id = db.Column(db.String(100), unique=True, nullable=False)
     # phone_no = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(Users.id), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
