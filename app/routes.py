@@ -399,7 +399,7 @@ def payment_request():
         # -----------------------------------------------------------------------------
 
 
-        session["userId"] = current_user.id
+        
         session["budgetId"] = budgetId
 
         
@@ -532,7 +532,7 @@ def handle_callback():
 
         amount = result['ResultParameters']['ResultParameter'][5]['Value']
         transaction_id = str(uuid.uuid4())
-        user_id = session.get("userId", None)
+        user_id = 1
         budget = 0
 
         trans = Transaction(transaction_id=transaction_id, mpesa_ref=mpesa_ref, merchant_req_id=merchant_req_id, trans_date=trans_date, status=status, amount=amount, user_id=user_id, budget=budget)
@@ -603,6 +603,7 @@ def confirm_payment(merchant_req_id):
         if payment:
             count = 5
             budget = session.get("budgetId", None)
+            payment.user_id = current_user.id
             payment.budget = budget
             
             db.session.commit()
