@@ -11,44 +11,6 @@ import requests
 import time
 
 
-transactions_table_content = {
-    "1": {
-        "trans_No": "QSILKA3L7DX",
-        "budget_Id": "bgt-001",
-        "user": "Martin Kihungi",
-        "date": "20-05-2024",
-        "status": "Paid",
-        "amount": "150",
-        "description": "Shipping"
-        },
-    "2": {
-        "trans_No": "QSI4XGH86FH",
-        "budget_Id": "bgt-001",
-        "user": "Martin Kihungi",
-        "date": "20-05-2024",
-        "status": "Paid",
-        "amount": "200",
-        "description": "Stationery"
-        }
-    }
-
-approvals_table_content = {
-    "1": {
-        "request_id": "bgt-003",
-        "user": "Martin Kihungi",
-        "date": "25-05-2024",
-        "status": "Pending",
-        "amount": "150"
-        },
-    "2": {
-        "request_id": "bgt-003",
-        "user": "Martin Kihungi",
-        "date": "25-05-2024",
-        "status": "Pending",
-        "amount": "150"
-        }
-    }
-
 
 
 # def create_db():
@@ -753,7 +715,7 @@ def generate_access_token():
 #  Delete all records in transactions table.
 @app.route("/del", methods=['POST', 'DELETE', 'GET'])
 def delete_rec():
-    db.session.query(Transaction).delete()
-    db.session.commit()
+    with app.app_context():
+        db.create_all()
     flash('Your Record has been Deleted!', 'success')
     return redirect(url_for('budgets'))
