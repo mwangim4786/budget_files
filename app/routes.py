@@ -392,6 +392,7 @@ def payment_request():
         print(utilised_funds)
         print(available_funds)
         print(amount)
+        print(narration)
 
 
         if amount > available_funds:
@@ -403,7 +404,7 @@ def payment_request():
         
         session["budgetId"] = budgetId
         session["fileId"] = file
-        session["desc"] = narration
+        session["descr"] = narration
 
         
     
@@ -616,7 +617,7 @@ def confirm_payment(merchant_req_id):
             count = 5
             budget = session.get("budgetId", None)
             fileNo = session.get("fileId", None)
-            description = session("desc", None)
+            description = session.get("descr", None)
             payment.user_id = current_user.id
             payment.budget = budget
             payment.file = fileNo
