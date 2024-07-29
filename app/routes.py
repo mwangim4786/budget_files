@@ -371,7 +371,7 @@ def payment_request():
     if form.validate_on_submit():
         # Payment variables
         amount = form.amount.data
-        narration = form.narration.data
+        narration = str(form.narration.data)
         partyB = form.paybill.data
         file = str(form.file_no.data)
         budgetId = form.budget_no.data
