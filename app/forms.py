@@ -114,6 +114,8 @@ class PayForm(FlaskForm):
     amount = IntegerField('Amount',
                            validators=[DataRequired()])
     
+    narration = StringField('Description', validators=[DataRequired(), Length(min=1, max=200)])
+    
     paybill = StringField('Paybill', validators=[DataRequired()])
 
     # file_no = SelectField('Select File', choices=choice_func_file(), validators=[DataRequired()])

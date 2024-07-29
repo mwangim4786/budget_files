@@ -33,6 +33,25 @@
                             {% endif %}
                         </div>
                     </div>
+
+                    
+                    <div class="form-group row">
+                        {{ form.narration.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-6">
+                            <!-- check for errors on submit -->
+                            {% if form.narration.errors %}
+                                {{ form.narration(class="form-control is-invalid") }}
+                                <div>
+                                    {% for error in form.narration.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <!-- if no errors -->
+                                {{ form.narration(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
                     
                     
                     <div class="form-group row">

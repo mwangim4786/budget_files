@@ -371,6 +371,7 @@ def payment_request():
     if form.validate_on_submit():
         # Payment variables
         amount = form.amount.data
+        narration = form.narration.data
         partyB = form.paybill.data
         file = str(form.file_no.data)
         budgetId = form.budget_no.data
@@ -394,7 +395,7 @@ def payment_request():
 
 
         if amount > available_funds:
-            flash('Insufficient funds for this transaction!'+budgetId+'', 'warning')
+            flash('Insufficient funds for this transaction!  Avalilable funds - '+available_funds+'', 'warning')
             return redirect(url_for('transactions'))
         # -----------------------------------------------------------------------------
 
@@ -402,6 +403,7 @@ def payment_request():
         
         session["budgetId"] = budgetId
         session["fileId"] = file
+        session["desc"] = narration
 
         
     
@@ -543,8 +545,9 @@ def handle_callback():
         user_id = 1
         budget = 0
         file = '-'
+        narration = '-'
 
-        trans = Transaction(transaction_id=transaction_id, mpesa_ref=mpesa_ref, merchant_req_id=merchant_req_id, trans_date=trans_date, status=status, amount=amount, user_id=user_id, budget=budget, file=file)
+        trans = Transaction(transaction_id=transaction_id, mpesa_ref=mpesa_ref, merchant_req_id=merchant_req_id, trans_date=trans_date, status=status, amount=amount, user_id=user_id, budget=budget, file=file, narration=narration)
         db.session.add(trans)
         db.session.commit()
         
@@ -613,9 +616,11 @@ def confirm_payment(merchant_req_id):
             count = 5
             budget = session.get("budgetId", None)
             fileNo = session.get("fileId", None)
+            description = session("desc", None)
             payment.user_id = current_user.id
             payment.budget = budget
             payment.file = fileNo
+            payment.narration = description
             
             db.session.commit()
             if payment.status == '0':

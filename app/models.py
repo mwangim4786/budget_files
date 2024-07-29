@@ -39,6 +39,7 @@ class Transaction(db.Model):
     # phone_no = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(Users.id), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
+    narration = db.Column(db.String(200),nullable=True)
     budget = db.Column(db.Integer, nullable=False)
     file = db.Column(db.String(20),nullable=True)
     trans_date = db.Column(db.DateTime(), nullable=False)
