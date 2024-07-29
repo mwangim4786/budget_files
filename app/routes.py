@@ -396,7 +396,7 @@ def payment_request():
 
 
         if amount > available_funds:
-            flash('Insufficient funds for this transaction!  Avalilable funds - '+available_funds+'', 'warning')
+            flash('Insufficient funds for this transaction!  Avalilable funds - '+str(available_funds)+'', 'warning')
             return redirect(url_for('transactions'))
         # -----------------------------------------------------------------------------
 

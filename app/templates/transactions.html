@@ -25,7 +25,7 @@
                     <th class="text-center" style="padding: 5px;">Mpesa Ref</th>
                     <th class="text-center" style="padding: 5px;">Budget ID</th>
                     <th class="text-center" style="padding: 5px;">User</th>
-                    <th class="text-center" style="padding: 5px;">Role</th>
+                    <th class="text-center" style="padding: 5px;">Desc.</th>
                 </thead>
                 <tbody>
                     
@@ -42,7 +42,7 @@
                             <td class="text-center" style="padding: 5px;">{{ transaction['mpesa_ref'] }}</td>
                             <td class="text-center" style="padding: 5px;">{{ transaction['budget'] }}</td>
                             <td class="text-center" style="padding: 5px;">{{ transaction.phone.name }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ transaction.phone.role }}</td>
+                            <td class="text-center" style="padding: 5px;">{{ transaction.phone.narration }}</td>
                         </tr>
                         {% endfor %}
                     
