@@ -723,6 +723,7 @@ def delete_rec():
     date_value = datetime.strptime(date_val, "%Y-%m-%d")
     with app.app_context():
         db.drop_all()
+        db.create_all()
         from app.models import Users, Budget
         user1 = Users(name='John Doe', email='jon@gmail.com', phone='254722345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
         user2 = Users(name='New User', email='new@gmail.com', phone='254742345678', role='Staff', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
