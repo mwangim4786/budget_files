@@ -11,6 +11,51 @@ import requests
 import time
 
 
+transactions_table_content = {
+    "1": {
+        "trans_No": "QSILKA3L7DX",
+        "budget_Id": "bgt-001",
+        "user": "Martin Kihungi",
+        "date": "20-05-2024",
+        "status": "Paid",
+        "amount": "150",
+        "description": "Shipping"
+        },
+    "2": {
+        "trans_No": "QSI4XGH86FH",
+        "budget_Id": "bgt-001",
+        "user": "Martin Kihungi",
+        "date": "20-05-2024",
+        "status": "Paid",
+        "amount": "200",
+        "description": "Stationery"
+        }
+    }
+
+approvals_table_content = {
+    "1": {
+        "request_id": "bgt-003",
+        "user": "Martin Kihungi",
+        "date": "25-05-2024",
+        "status": "Pending",
+        "amount": "150"
+        },
+    "2": {
+        "request_id": "bgt-003",
+        "user": "Martin Kihungi",
+        "date": "25-05-2024",
+        "status": "Pending",
+        "amount": "150"
+        }
+    }
+
+
+
+# def create_db():
+#     with app.app_context():
+#         db.create_all()
+
+
 @app.route('/home')
 @login_required
 def home():
@@ -359,12 +404,14 @@ def payment_request():
         full_desc = fileNo+ ' - ' +fileName
         files_list.append((fileNo, full_desc))
     form.file_no.choices = files_list
+
     if form.validate_on_submit():
         # Payment variables
         amount = form.amount.data
         partyB = form.paybill.data
         file = str(form.file_no.data)
         budgetId = form.budget_no.data
+        print(budgetId)
 
         # -----------------------------------------------------------------------------
         budget = Budget.query.get_or_404(budgetId)
@@ -376,7 +423,7 @@ def payment_request():
                 trans_amnt_list.append(trans_amount)
         utilised_funds = sum(trans_amnt_list)
         available_funds = budget.amount - utilised_funds
-        
+
 
         print(utilised_funds)
         print(available_funds)
@@ -384,11 +431,10 @@ def payment_request():
 
 
         if amount > available_funds:
-            flash('Insufficient funds for this transaction! You can utilise only up to '+str(available_funds)+' '+budgetId+'', 'warning')
+            flash('Insufficient funds for this transaction!'+budgetId+'', 'warning')
             return redirect(url_for('transactions'))
         # -----------------------------------------------------------------------------
 
-        print(budgetId)
 
         
         session["budgetId"] = budgetId
@@ -421,7 +467,7 @@ def payment_request():
             "Requester": "254700000000",
             "Remarks": "OK",
             "QueueTimeOutURL": "https://budgetfiles.onrender.com/callback",
-            "ResultURL": "https://budgetfiles.onrender.com/callback",
+            "ResultURL": "https://budgetfiles.onrender.com/callback"
         }
 
         try:
@@ -707,7 +753,7 @@ def generate_access_token():
 #  Delete all records in transactions table.
 @app.route("/del", methods=['POST', 'DELETE', 'GET'])
 def delete_rec():
-    db.session.query(Budget).delete()
+    db.session.query(Transaction).delete()
     db.session.commit()
     flash('Your Record has been Deleted!', 'success')
     return redirect(url_for('budgets'))
