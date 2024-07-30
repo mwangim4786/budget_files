@@ -26,6 +26,50 @@
                 </div>
 
 
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ title }}</h5>
+                            
+                            <table id="transactions_table" class="display" style="width:100%">
+                                <thead style="background: #055041; color: #FFFFFF">
+                                    <th class="text-center" style="padding: 5px;">Status</th>
+                                    <th class="text-center" style="padding: 5px;">Amount</th>
+                                    <th class="text-center" style="padding: 5px;">Date</th>
+                                    <th class="text-center" style="padding: 5px;">Merchant Id</th>
+                                    <th class="text-center" style="padding: 5px;">Mpesa Ref</th>
+                                    <th class="text-center" style="padding: 5px;">Budget ID</th>
+                                    <th class="text-center" style="padding: 5px;">User</th>
+                                    <th class="text-center" style="padding: 5px;">Desc.</th>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% if transactions %}
+                                    
+                                        {% for transaction in transactions %}
+                                        <tr class="transactions_row">
+                                            <td class="text-center" style="padding: 5px;"> <div style="padding: 0; margin: 1px auto;" class="alert alert alert-success alert-heading" role="alert"> Success </div> </td>
+                                            <td class="text-center" style="padding: 5px;">{{ transaction['amount'] }}</td>
+                                            <td class="text-center" style="padding: 5px;">{{ transaction['trans_date'] }}</td>
+                                            <td class="text-center" style="padding: 5px;">{{ transaction['merchant_req_id'] }}</td>
+                                            <td class="text-center" style="padding: 5px;">{{ transaction['mpesa_ref'] }}</td>
+                                            <td class="text-center" style="padding: 5px;">{{ transaction['budget'] }}</td>
+                                            <td class="text-center" style="padding: 5px;">{{ transaction.phone.name }}</td>
+                                            <td class="text-center" style="padding: 5px;">{{ transaction['narration'] }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    
+                                    {% endif %}
+                                    
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
 
