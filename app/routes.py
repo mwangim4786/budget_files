@@ -759,7 +759,7 @@ def generate_access_token():
 def delete_rec():
 
     transactions = Transaction.query.all()
-    db.session.delete(transactions)
+    Transaction.query.delete()
 
     flash('Your Record has been Deleted!', 'success')
     return redirect(url_for('budgets'))
