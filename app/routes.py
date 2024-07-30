@@ -19,7 +19,6 @@ from flask_bcrypt import Bcrypt
 #         db.create_all()
 
 
-@app.route('/')
 @app.route('/home')
 @login_required
 def home():
@@ -41,7 +40,7 @@ def register():
         return redirect(url_for('users'))
     return render_template('register.html', page='register', title='Register', form=form)
 
-
+@app.route('/')
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
