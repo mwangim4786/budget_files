@@ -19,6 +19,7 @@ from flask_bcrypt import Bcrypt
 #         db.create_all()
 
 
+@app.route('/')
 @app.route('/home')
 @login_required
 def home():
@@ -731,23 +732,34 @@ def generate_access_token():
 
 
 #  Delete all records in transactions table.
+# @app.route("/del", methods=['POST', 'DELETE', 'GET'])
+# def delete_rec():
+#     from app import app, db
+#     from datetime import datetime
+#     bcrypt = Bcrypt()
+#     date_val =  '2024-6-12'
+#     date_value = datetime.strptime(date_val, "%Y-%m-%d")
+#     with app.app_context():
+#         db.drop_all()
+#         db.create_all()
+#         from app.models import Users, Budget
+#         user1 = Users(name='John Doe', email='jon@gmail.com', phone='254722345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
+#         user2 = Users(name='New User', email='new@gmail.com', phone='254742345678', role='Staff', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
+#         user3 = Users(name='Pat Jenkins', email='pat@gmail.com', phone='254712345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
+#         db.session.add(user1)
+#         db.session.add(user2)
+#         db.session.add(user3)
+#         db.session.commit()
+#     flash('Your Record has been Deleted!', 'success')
+#     return redirect(url_for('budgets'))
+
+
+
 @app.route("/del", methods=['POST', 'DELETE', 'GET'])
 def delete_rec():
-    from app import app, db
-    from datetime import datetime
-    bcrypt = Bcrypt()
-    date_val =  '2024-6-12'
-    date_value = datetime.strptime(date_val, "%Y-%m-%d")
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-        from app.models import Users, Budget
-        user1 = Users(name='John Doe', email='jon@gmail.com', phone='254722345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-        user2 = Users(name='New User', email='new@gmail.com', phone='254742345678', role='Staff', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-        user3 = Users(name='Pat Jenkins', email='pat@gmail.com', phone='254712345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-        db.session.add(user1)
-        db.session.add(user2)
-        db.session.add(user3)
-        db.session.commit()
+
+    transactions = Transaction.query.all()
+    db.session.delete(transactions)
+
     flash('Your Record has been Deleted!', 'success')
     return redirect(url_for('budgets'))
