@@ -758,8 +758,9 @@ def generate_access_token():
 @app.route("/del", methods=['POST', 'DELETE', 'GET'])
 def delete_rec():
 
-    transactions = Transaction.query.all()
-    Transaction.query.delete()
+    # transactions = Transaction.query.all()
+    db.session.query(Transaction).delete()
+    db.session.commit()
 
     flash('Your Record has been Deleted!', 'success')
     return redirect(url_for('budgets'))
