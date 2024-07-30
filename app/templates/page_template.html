@@ -124,6 +124,12 @@
 				$(this).toggleClass('hover');
 			});
 
+			$('.files_row').click( function() {
+				window.location = $(this).find('a').attr('href');
+			}).hover( function() {
+				$(this).toggleClass('hover');
+			});
+
 
 			$(window).on('load', function() {
 				$('#exampleModalCenter').modal('show');
