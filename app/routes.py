@@ -493,7 +493,7 @@ def view_file(file_id):
     fileName = file_info.file_name
     fileNo = file_info.file_no
 
-    transactions_per_file = Transaction.query.filter_by(file_no=fileNo).all()
+    transactions_per_file = Transaction.query.filter_by(file=fileNo).all()
 
     return render_template('view_file.html', file=file_info, page='files', title="Viewing File   "+fileNo+" - "+fileName, transactions=transactions_per_file)
 
