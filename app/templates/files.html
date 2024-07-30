@@ -30,7 +30,7 @@
                     
                         {% for file in files %}
                         <tr class="files_row">
-                            <td class="text-center" style="padding: 5px;">{{ file.file_no }}</td>
+                            <td class="text-center" style="padding: 5px;"><a href="{{ url_for('budget', budget_id=budget.id) }}" style="text-decoration: none; color: inherit;"> {{ file.file_no }} </a></td>
                             <td class="text-center" style="padding: 5px;">{{ file.file_name }}</td>
                             <td class="text-center" style="padding: 5px;">{{ file.subject }}</td>
                             <td class="text-center" style="padding: 5px;">{{ file.file_fee }}</td>

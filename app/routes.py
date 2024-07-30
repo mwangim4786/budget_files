@@ -486,6 +486,18 @@ def view_budget(budget_id):
 
 
 
+@app.route('/files/<int:file_id>/view', methods=['GET'])
+def view_file(file_id):
+        
+    file_info = Files.query.get_or_404(file_id)
+    fileName = file_info.file_name
+    fileNo = file_info.file_no
+
+    return render_template('view_file.html', file=file_info, page='files', title="View File "+fileNo+" - "+fileName, user=user)
+
+
+
+
 @app.route('/approvals/<int:budget_id>/confirm_budget/<string:approve_string>', methods=['POST', 'GET'])
 def approve_budget(budget_id, approve_string):
         

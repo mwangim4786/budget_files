@@ -1,0 +1,40 @@
+{% extends "page_template.html" %}
+{% block contents %}
+
+<div class="content">
+
+    <section class="places">
+
+        {% if user.phone == current_user.phone or current_user.role == 'Admin' %}
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ title }}</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>Amount:</b> {{ file.file_name }}</li>
+                                <li class="list-group-item"><b>Date:</b> {{ file.file_name }}</li>
+                                <li class="list-group-item"><b>Status:</b> <span style="padding: 5px;" class="alert alert alert-warning alert-heading" role="alert"> {{ file.file_name }} </span> </li>
+                                <li class="list-group-item"><b>Status:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> {{ file.file_name }} </span> </li>
+                                <li class="list-group-item"><b>Name:</b> {{ file.file_name }}</li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            
+        {% endif %}
+
+        
+        
+
+    </section>
+
+</div>
