@@ -126,6 +126,14 @@ class PayForm(FlaskForm):
 
     submit = SubmitField('Submit')
 
+    def validate_budget_no(self, budget_no):
+        if budget_no.data == "wrong-Budgetz":
+            raise ValidationError('Please choose a budget from list.')
+    
+    def validate_file_no(self, file_no):
+        if file_no.data == "wrong-Filez":
+            raise ValidationError('Please choose a File from list.')
+
 
 
 class FileForm(FlaskForm):

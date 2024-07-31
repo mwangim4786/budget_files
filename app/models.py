@@ -32,16 +32,55 @@ class Users(db.Model, UserMixin):
     #     self.password = password
     #     self.date = date
 
+class Budget(db.Model):
+    __tablename__ = 'budgets_table'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    budget_id = db.Column(db.String(200), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    purpose = db.Column(db.String(2000), nullable=False)
+    bdgt_name = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.Integer, nullable=False, default=0)
+    approved_by = db.Column(db.String(200), nullable=False, default='0')
+    user_id = db.Column(db.Integer, db.ForeignKey(Users.id), nullable=False)
+    transactions = db.relationship('Transaction', backref='budget_id', lazy=True)
+    
+    def __repr__(self):
+        return f"Budget('{self.amount}', '{self.purpose}', '{self.bdgt_name}', '{self.status}', '{self.budget_id}', '{self.approved_by}')"
+
+    # def __init__(self, transaction_id, phone_no, amount, created_at, status, merchant_req_id, mpesa_ref):
+    #     self.transaction_id = transaction_id
+    #     self.phone_no = phone_no
+    #     self.amount = amount
+    #     self.created_at = created_at
+    #     self.status = status
+    #     self.merchant_req_id = merchant_req_id
+    #     self.mpesa_ref = mpesa_ref
+
+
+class Files(db.Model):
+    __tablename__ = 'files'
+    id = db.Column(db.Integer, primary_key=True)
+    file_no = db.Column(db.String(20), nullable=False)
+    file_name = db.Column(db.String(20), nullable=False)
+    subject = db.Column(db.String(300), nullable=False)
+    file_fee = db.Column(db.Integer, nullable=False)
+    transactions = db.relationship('Transaction', backref='file_no', lazy=True)
+    
+    def __repr__(self):
+        return f"File('{self.id}', '{self.file_no}', '{self.file_name}', '{self.subject}', '{self.file_fee}')"
+
+
 class Transaction(db.Model):
     __tablename__ = 'transactions_table'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     transaction_id = db.Column(db.String(100), unique=True, nullable=False)
     # phone_no = db.Column(db.String(20), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(Users.id), nullable=False)
+    budget = db.Column(db.Integer, db.ForeignKey(Budget.id), nullable=False)
+    file = db.Column(db.String(20), db.ForeignKey(Files.file_no), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     narration = db.Column(db.String(200),nullable=True)
-    budget = db.Column(db.Integer, nullable=False)
-    file = db.Column(db.String(20),nullable=True)
     trans_date = db.Column(db.DateTime(), nullable=False)
     status = db.Column(db.String(20), nullable=False)
     merchant_req_id = db.Column(db.String(40),nullable=True)
@@ -59,29 +98,6 @@ class Transaction(db.Model):
     #     self.merchant_req_id = merchant_req_id
     #     self.mpesa_ref = mpesa_ref
 
-class Budget(db.Model):
-    __tablename__ = 'budgets_table'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    budget_id = db.Column(db.String(200), nullable=False)
-    amount = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    purpose = db.Column(db.String(2000), nullable=False)
-    bdgt_name = db.Column(db.String(100), nullable=False)
-    status = db.Column(db.Integer, nullable=False, default=0)
-    approved_by = db.Column(db.String(200), nullable=False, default='0')
-    user_id = db.Column(db.Integer, db.ForeignKey(Users.id), nullable=False)
-    
-    def __repr__(self):
-        return f"Budget('{self.amount}', '{self.purpose}', '{self.bdgt_name}', '{self.status}', '{self.budget_id}', '{self.approved_by}')"
-
-    # def __init__(self, transaction_id, phone_no, amount, created_at, status, merchant_req_id, mpesa_ref):
-    #     self.transaction_id = transaction_id
-    #     self.phone_no = phone_no
-    #     self.amount = amount
-    #     self.created_at = created_at
-    #     self.status = status
-    #     self.merchant_req_id = merchant_req_id
-    #     self.mpesa_ref = mpesa_ref
 
 
 class Payment(db.Model):
@@ -105,15 +121,4 @@ class Payment(db.Model):
     #     self.created_at = created_at
     #     self.merchant_req_id = merchant_req_id
 
-
-class Files(db.Model):
-    __tablename__ = 'files'
-    id = db.Column(db.Integer, primary_key=True)
-    file_no = db.Column(db.String(20), nullable=False)
-    file_name = db.Column(db.String(20), nullable=False)
-    subject = db.Column(db.String(300), nullable=False)
-    file_fee = db.Column(db.Integer, nullable=False)
-    
-    def __repr__(self):
-        return f"File('{self.id}', '{self.file_no}', '{self.file_name}', '{self.subject}', '{self.file_fee}')"
 

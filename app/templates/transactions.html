@@ -21,9 +21,9 @@
                     <th class="text-center" style="padding: 5px;">Status</th>
                     <th class="text-center" style="padding: 5px;">Amount</th>
                     <th class="text-center" style="padding: 5px;">Date</th>
-                    <th class="text-center" style="padding: 5px;">Merchant Id</th>
                     <th class="text-center" style="padding: 5px;">Mpesa Ref</th>
-                    <th class="text-center" style="padding: 5px;">Budget ID</th>
+                    <th class="text-center" style="padding: 5px;">Budget</th>
+                    <th class="text-center" style="padding: 5px;">File/Client</th>
                     <th class="text-center" style="padding: 5px;">User</th>
                     <th class="text-center" style="padding: 5px;">Desc.</th>
                 </thead>
@@ -32,18 +32,18 @@
                     {% if transactions %}
                     
                         {% for transaction in transactions %}
-                        <tr class="transactions_row">
-                            {% if transaction['status'] == '0' %}
-                                <td class="text-center" style="padding: 5px;"> <div style="padding: 0; margin: 1px auto;" class="alert alert alert-success alert-heading" role="alert"> Success </div> </td>
-                            {% endif %}
-                            <td class="text-center" style="padding: 5px;">{{ transaction['amount'] }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ transaction['trans_date'] }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ transaction['merchant_req_id'] }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ transaction['mpesa_ref'] }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ transaction['budget'] }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ transaction.phone.name }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ transaction['narration'] }}</td>
-                        </tr>
+                            <tr class="transactions_row">
+                                {% if transaction['status'] == '0' %}
+                                    <td class="text-center" style="padding: 5px;"> <div style="padding: 0; margin: 1px auto;" class="alert alert alert-success alert-heading" role="alert"> Success </div> </td>
+                                {% endif %}
+                                <td class="text-center" style="padding: 5px;">{{ transaction['amount'] }}</td>
+                                <td class="text-center" style="padding: 5px;">{{ transaction['trans_date'] }}</td>
+                                <td class="text-center" style="padding: 5px;">{{ transaction.mpesa_ref }}</td>
+                                <td class="text-center" style="padding: 5px;">{{ transaction.budget_id.bdgt_name }}</td>
+                                <td class="text-center" style="padding: 5px;">{{ transaction.file_no.file_name }}</td>
+                                <td class="text-center" style="padding: 5px;">{{ transaction.phone.name }}</td>
+                                <td class="text-center" style="padding: 5px;">{{ transaction['narration'] }}</td>
+                            </tr>
                         {% endfor %}
                     
                     {% endif %}

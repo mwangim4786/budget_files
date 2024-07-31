@@ -40,7 +40,7 @@ def register():
         return redirect(url_for('users'))
     return render_template('register.html', page='register', title='Register', form=form)
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
@@ -83,7 +83,8 @@ def budgets():
 @app.route('/approvals')
 @login_required
 def approvals():
-    budgets = Budget.query.order_by(Budget.date.desc()).all()
+    # budgets = Budget.query.order_by(Budget.date.desc()).all()
+    budgets = Budget.query.filter(Budget.user_id != current_user.id).all()
     return render_template('approvals.html', page='approvals', title='Approvals', budgets=budgets)
 
 
@@ -273,12 +274,20 @@ def error_500(error):
 @login_required
 def transactions():
 
+    transactions = []
+    bdgt_names = []
+
     if current_user.role == 'Admin':
         transactions = Transaction.query.all()
     else:
         transactions = Transaction.query.filter_by(user_id=current_user.id).all()
 
-    return render_template('transactions.html', page='transactions', transactions=transactions)
+    for transaction in transactions:
+        bdgt_names.append(transaction.budget)
+
+    
+
+    return render_template('transactions.html', page='transactions', transactions=transactions, names=bdgt_names)
 
 
 @app.route('/files')
@@ -349,8 +358,8 @@ def users():
 def payment_request():
     # files = Files.query.all()
     form = PayForm()
-    budgets_list = [(0, "Select Budget")]
-    budgets = Budget.query.all()
+    budgets_list = [("wrong-Budgetz", "Select Budget")]
+    budgets = Budget.query.filter_by(user_id=current_user.id).all()
     for budget in budgets:
         bdgtPurpose = budget.bdgt_name
         bdgtId = budget.id
@@ -360,7 +369,7 @@ def payment_request():
     form.budget_no.choices = budgets_list
     
     files = Files.query.all()
-    files_list = [(0, "Select File")]
+    files_list = [("wrong-Filez", "Select File")]
     for file in files:
         fileNo = file.file_no
         fileName = file.file_name
@@ -433,8 +442,8 @@ def payment_request():
             "AccountReference": "353353",
             "Requester": "254700000000",
             "Remarks": "OK",
-            "QueueTimeOutURL": "https://budgetfiles.onrender.com/callback",
-            "ResultURL": "https://budgetfiles.onrender.com/callback"
+            "QueueTimeOutURL": "https://045f-41-90-228-3.ngrok-free.app/callback",
+            "ResultURL": "https://045f-41-90-228-3.ngrok-free.app/callback"
         }
 
         try:
@@ -495,7 +504,7 @@ def view_file(file_id):
 
     transactions_per_file = Transaction.query.filter_by(file=fileNo).all()
 
-    return render_template('view_file.html', file=file_info, page='files', title="Viewing File   "+fileNo+" - "+fileName, transactions=transactions_per_file)
+    return render_template('view_file.html', file=file_info, page='files', title=fileNo+" - "+fileName, transactions=transactions_per_file)
 
 
 
@@ -745,35 +754,35 @@ def generate_access_token():
 
 
 #  Delete all records in transactions table.
-# @app.route("/del", methods=['POST', 'DELETE', 'GET'])
-# def delete_rec():
-#     from app import app, db
-#     from datetime import datetime
-#     bcrypt = Bcrypt()
-#     date_val =  '2024-6-12'
-#     date_value = datetime.strptime(date_val, "%Y-%m-%d")
-#     with app.app_context():
-#         db.drop_all()
-#         db.create_all()
-#         from app.models import Users, Budget
-#         user1 = Users(name='John Doe', email='jon@gmail.com', phone='254722345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-#         user2 = Users(name='New User', email='new@gmail.com', phone='254742345678', role='Staff', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-#         user3 = Users(name='Pat Jenkins', email='pat@gmail.com', phone='254712345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-#         db.session.add(user1)
-#         db.session.add(user2)
-#         db.session.add(user3)
-#         db.session.commit()
-#     flash('Your Record has been Deleted!', 'success')
-#     return redirect(url_for('budgets'))
-
-
-
 @app.route("/del", methods=['POST', 'DELETE', 'GET'])
 def delete_rec():
-
-    # transactions = Transaction.query.all()
-    db.session.query(Transaction).delete()
-    db.session.commit()
-
+    from app import app, db
+    from datetime import datetime
+    bcrypt = Bcrypt()
+    date_val =  '2024-6-12'
+    date_value = datetime.strptime(date_val, "%Y-%m-%d")
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
+        from app.models import Users, Budget
+        user1 = Users(name='John Doe', email='jon@gmail.com', phone='254722345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
+        user2 = Users(name='New User', email='new@gmail.com', phone='254742345678', role='Staff', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
+        user3 = Users(name='Pat Jenkins', email='pat@gmail.com', phone='254712345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
+        db.session.add(user1)
+        db.session.add(user2)
+        db.session.add(user3)
+        db.session.commit()
     flash('Your Record has been Deleted!', 'success')
     return redirect(url_for('budgets'))
+
+
+
+# @app.route("/del", methods=['POST', 'DELETE', 'GET'])
+# def delete_rec():
+
+#     # transactions = Transaction.query.all()
+#     db.session.query(Transaction).delete()
+#     db.session.commit()
+
+#     flash('Your Record has been Deleted!', 'success')
+#     return redirect(url_for('budgets'))
