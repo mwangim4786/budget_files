@@ -567,7 +567,7 @@ def handle_callback():
         amount = result['ResultParameters']['ResultParameter'][5]['Value']
         transaction_id = str(uuid.uuid4())
         user_id = 1
-        budget = 0
+        budget = 1
         file = '-'
         narration = '-'
 
