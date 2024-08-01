@@ -94,7 +94,7 @@ def create_budget():
     budgets = Budget.query.all()
     form = BudgetForm()
     bdgt_id = str(uuid.uuid4())
-    available_funds = 30000
+    available_funds = 100000
     funds_list = []
     for budget in budgets:
         budget_amount = budget.amount
