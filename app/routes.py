@@ -442,8 +442,8 @@ def payment_request():
             "AccountReference": "353353",
             "Requester": "254700000000",
             "Remarks": "OK",
-            "QueueTimeOutURL": "https://c42f-105-161-216-239.ngrok-free.app/callback",
-            "ResultURL": "https://c42f-105-161-216-239.ngrok-free.app/callback"
+            "QueueTimeOutURL": "https://budgetfiles.onrender.com/callback",
+            "ResultURL": "https://budgetfiles.onrender.com/callback"
         }
 
         try:
