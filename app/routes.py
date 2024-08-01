@@ -545,6 +545,10 @@ def approve_budget(budget_id, approve_string):
 
 @app.route("/callback", methods=["POST"])
 def handle_callback():
+
+    fileNo = session.get("fileId", None)
+    print(fileNo)
+
     json_repsonse = request.get_json()
     result = json_repsonse["Result"]
 
@@ -568,7 +572,7 @@ def handle_callback():
         transaction_id = str(uuid.uuid4())
         user_id = 1
         budget = 1
-        file = '-'
+        file = fileNo
         narration = '-'
 
         trans = Transaction(transaction_id=transaction_id, mpesa_ref=mpesa_ref, merchant_req_id=merchant_req_id, trans_date=trans_date, status=status, amount=amount, user_id=user_id, budget=budget, file=file, narration=narration)
