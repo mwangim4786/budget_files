@@ -20,6 +20,7 @@
                                     <li class="list-group-item"><b>Status:</b> <span style="padding: 5px;" class="alert alert alert-warning alert-heading" role="alert"> Pending </span> </li>
                                 {% elif budget.status == 1 %}
                                     <li class="list-group-item"><b>Status:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> Approved </span> </li>
+                                    <li class="list-group-item"><b>Approved By:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> {{ budget.approved_by }} </span> </li>
                                 {% endif %}
                                 <li class="list-group-item"><b>Name:</b> {{ budget.phone.name }}</li>
                             </ul>

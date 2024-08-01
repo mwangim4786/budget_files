@@ -94,7 +94,7 @@ def create_budget():
     budgets = Budget.query.all()
     form = BudgetForm()
     bdgt_id = str(uuid.uuid4())
-    available_funds = 100000
+    available_funds = 40000
     funds_list = []
     for budget in budgets:
         budget_amount = budget.amount
@@ -103,7 +103,7 @@ def create_budget():
 
     
     if form.validate_on_submit():
-        if available_funds > budget_funds + form.amount.data:
+        if available_funds >= budget_funds + form.amount.data:
             budget = Budget(budget_id=bdgt_id, amount=form.amount.data, bdgt_name=form.name.data, purpose=form.purpose.data, phone=current_user)
             db.session.add(budget)
             db.session.commit()
@@ -359,7 +359,7 @@ def payment_request():
     # files = Files.query.all()
     form = PayForm()
     budgets_list = [("wrong-Budgetz", "Select Budget")]
-    budgets = Budget.query.filter_by(user_id=current_user.id).all()
+    budgets = Budget.query.filter_by(user_id=current_user.id, status=1).all()
     for budget in budgets:
         bdgtPurpose = budget.bdgt_name
         bdgtId = budget.id
@@ -442,8 +442,8 @@ def payment_request():
             "AccountReference": "353353",
             "Requester": "254700000000",
             "Remarks": "OK",
-            "QueueTimeOutURL": "https://budgetfiles.onrender.com/callback",
-            "ResultURL": "https://budgetfiles.onrender.com/callback"
+            "QueueTimeOutURL": "https://c42f-105-161-216-239.ngrok-free.app/callback",
+            "ResultURL": "https://c42f-105-161-216-239.ngrok-free.app/callback"
         }
 
         try:
