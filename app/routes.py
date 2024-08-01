@@ -350,7 +350,10 @@ def users():
     return render_template('users.html', page='users', users=users)
 
 
-
+filezNo = ''
+budgetzId = 0
+descriptionZ = ''
+uzer_id = 0
 
 
 @app.route('/payment_request', methods=['POST', 'GET'])
@@ -449,6 +452,12 @@ def payment_request():
         try:
             response = requests.request("POST", url, headers = headers, json = payload).json()
             if response['ResponseCode'] == '0':
+                global filezNo, budgetzId, descriptionZ, uzer_id
+                filezNo = file
+                budgetzId = budgetId
+                descriptionZ = narration
+                uzer_id = current_user.id
+                print(filezNo)
                 # return response
                 data = dict()
                 data['amount'] = amount
@@ -570,10 +579,10 @@ def handle_callback():
 
         amount = result['ResultParameters']['ResultParameter'][5]['Value']
         transaction_id = str(uuid.uuid4())
-        user_id = 1
-        budget = 1
-        file = fileNo
-        narration = '-'
+        user_id = uzer_id
+        budget = budgetzId
+        file = filezNo
+        narration = descriptionZ
 
         trans = Transaction(transaction_id=transaction_id, mpesa_ref=mpesa_ref, merchant_req_id=merchant_req_id, trans_date=trans_date, status=status, amount=amount, user_id=user_id, budget=budget, file=file, narration=narration)
         db.session.add(trans)
