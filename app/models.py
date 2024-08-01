@@ -61,7 +61,7 @@ class Budget(db.Model):
 class Files(db.Model):
     __tablename__ = 'files'
     id = db.Column(db.Integer, primary_key=True)
-    file_no = db.Column(db.String(20),  unique=True, nullable=False)
+    file_no = db.Column(db.String(20), nullable=False)
     file_name = db.Column(db.String(20), nullable=False)
     subject = db.Column(db.String(300), nullable=False)
     file_fee = db.Column(db.Integer, nullable=False)
