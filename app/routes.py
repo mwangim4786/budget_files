@@ -13,12 +13,6 @@ from flask_bcrypt import Bcrypt
 
 
 
-
-# def create_db():
-#     with app.app_context():
-#         db.create_all()
-
-
 @app.route('/home')
 @login_required
 def home():
@@ -83,7 +77,6 @@ def budgets():
 @app.route('/approvals')
 @login_required
 def approvals():
-    # budgets = Budget.query.order_by(Budget.date.desc()).all()
     budgets = Budget.query.filter(Budget.user_id != current_user.id).all()
     return render_template('approvals.html', page='approvals', title='Approvals', budgets=budgets)
 
@@ -115,8 +108,6 @@ def create_budget():
     return render_template('create_budget.html', page='budgets', title='Create New Budget',
                            form=form, legend='New Budget')
     
-
-
 
 @app.route("/budget/<int:budget_id>/update", methods=['POST', 'GET'])
 def budget(budget_id):
@@ -242,7 +233,6 @@ def create_file():
             initial_val = int(max(file_list))+1
             def_val = str(initial_val)+'/1/C'
             form.file_no.data = def_val
-            # print(word.split(', ', 1))
     return render_template('create_file.html', page='files', title='Create New file',
                            form=form, legend='New File')
 
@@ -262,13 +252,6 @@ def error_500(error):
     return render_template('errors/500.html'), 500
 # ------------------------------------------------------------------------------- #
 
-# @app.route('/create')
-# def create_all():
-#     # return 'Hello World!'
-#     create_db()
-
-#     return 'ok'
-
 
 @app.route('/transactions')
 @login_required
@@ -285,8 +268,6 @@ def transactions():
     for transaction in transactions:
         bdgt_names.append(transaction.budget)
 
-    
-
     return render_template('transactions.html', page='transactions', transactions=transactions, names=bdgt_names)
 
 
@@ -301,47 +282,6 @@ def files():
         count = len(files)
 
     return render_template('files.html', page='files', files=files, count=count)
-
-
-# @app.route("/transactions/<string:transaction_id>/delete", methods=['POST'])
-# def delete_transaction(transaction_id):
-#     transaction = Transaction.query.get_or_404(transaction_id)
-#     if current_user.role != 'Admin':
-#         abort(403)
-#     db.session.delete(transaction)
-#     db.session.commit()
-#     flash('Record has been Deleted!', 'success')
-#     return redirect(url_for('transactions'))
-
-
-# @app.route('/approvals', methods=['POST', 'GET'])
-# @login_required
-# def approvals():
-#     return render_template('approvals.html', page='approvals', data=approvals_table_content)
-
-
-# @app.route('/users', methods=['GET', 'POST', 'PUT', 'DELETE'])
-# def users():
-#     if request.method == 'GET':
-#         users = Users.query.all()
-#         return render_template('users.html', users=users)
-#     elif request.method == 'POST':
-#         name = request.form['name']
-#         email = request.form['email']
-#         phone = "254"+request.form['phone']
-#         role = request.form['role']
-#         password = request.form['password']
-#         date = datetime.today().strftime('%d-%m-%Y')
-
-#         if name == '' or email == '' or phone == '' or role == '' or password == '':
-#             return render_template('users.html', message='Please enter required fields.') 
-        
-#         data = Users(name, email, phone, role, password, date)
-#         db.session.add(data)
-#         db.session.commit()
-#         return render_template('users.html', message='User added successfully.')
-        # return redirect("/users")
-
 
 
 @app.route("/users")
@@ -400,32 +340,15 @@ def payment_request():
         utilised_funds = sum(trans_amnt_list)
         available_funds = budget.amount - utilised_funds
 
-
-        print(utilised_funds)
-        print(available_funds)
-        print(amount)
-        print(narration)
-
-
         if amount > available_funds:
             flash('Insufficient funds for this transaction!  Avalilable funds - '+str(available_funds)+'', 'warning')
             return redirect(url_for('transactions'))
         # -----------------------------------------------------------------------------
 
-
-        
-        session["budgetId"] = budgetId
-        session["fileId"] = file
-        session["descr"] = narration
-
-        
-    
         token = generate_access_token()
-
         initiator_pass = "Safaricom999!*!"
         public_key = "-----BEGIN CERTIFICATE-----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-----END CERTIFICATE-----"
-        security_credential = base64.b64encode((initiator_pass + public_key).encode('utf-8')).decode()
-        # securityCredential = "FkNWT9e5UOQPvs3fDqmZQ0sQn9gjQtlyn71IVqSeSzFjSarWJ1sPZHXzxQrquzPbaTTEeoWaB0D7rNfhgOqyash1n74qIhmNE4JsUC1IExWABY2risn7uzxPA2DToE1lVnV9EJAOvaq0uWlMhRnmInTS21samw2OGISATYkPmqVDIiTjEsyFjZNkdF996YYXGpocYKD437SuRVSGPQWdf5/ZauojPLiCXoFkmKVTayU2Dg+3yFszLlSyQ0ceVZACqFPGeJDTLNHG76y54bzvDLXbT1NZIezTl2mW3sbtTh0jvIUVKnyfD2oEXMNzz+jHugi/iShla0JeIJZRhwh1IQ=="
+        # security_credential = base64.b64encode((initiator_pass + public_key).encode('utf-8')).decode()
         securityCredential = "ZdWTIszTXMkF07d8tPQKxwLYSqBhWODLzu66+m5uXBgdg8mGmUQRVjjdo16KqRKKpwl5SLzjTzyLBKncYHew2iuSZzBeBzG4k7U7g8SO+ThizuM7UvFSHTj0AchQqBRppcFcYFnIo8t+QmfNfnqbsYGnT/nd0biR7Cn1G8w1UE7kTYBsY5TkB4WzmleByvyzGMpiz9UQHGIv9q3yrKmdH3+Akw80u8ibMriN1iyQFORILZvpA7pfsjr0VIC9sV0hFh632fuskT4biklhn4CbOCmpAkfCe90mf2GEUCsQBjLJ1WR1ewFuLPiJvxPEsywv5Kr9q8vRmlEMoQXDcaqhEw=="
 
         url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest'
@@ -477,22 +400,6 @@ def payment_request():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/budget/<int:budget_id>/view', methods=['GET'])
 def view_budget(budget_id):
         
@@ -500,8 +407,6 @@ def view_budget(budget_id):
     budget_ppse = json.loads(budget.purpose)
 
     return render_template('confirm_budget.html', budget=budget, budget_ppse=budget_ppse, page='approvals', title='Confirm Budget', user=user)
-
-
 
 
 @app.route('/files/<int:file_id>/view', methods=['GET'])
@@ -522,8 +427,6 @@ def view_file(file_id):
     return render_template('view_file.html', file=file_info, page='files', title=fileNo+" - "+fileName, transactions=transactions_per_file, file_costs=file_costs)
 
 
-
-
 @app.route('/approvals/<int:budget_id>/confirm_budget/<string:approve_string>', methods=['POST', 'GET'])
 def approve_budget(budget_id, approve_string):
         
@@ -540,22 +443,6 @@ def approve_budget(budget_id, approve_string):
         db.session.commit()
         flash('Budget has been Dispproved!', 'danger')
         return redirect(url_for('approvals'))
-
-    # return render_template('confirm_budget.html', budget=budget, page='approvals', title='Confirm Budget', user=user)
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-
 
 
 @app.route("/callback", methods=["POST"])
@@ -604,47 +491,6 @@ def handle_callback():
         return redirect("/transactions")
 
 
-
-
-def the_callback(resp):
-    status = resp['ResultCode']
-
-    msg = resp['ResultDesc']
-
-    with open("callbackfile.json", "a") as f:
-        json.dump(msg+" "+str(status), f)
-
-    return 0
-
-
-def the_redirect():
-    return redirect("/transactions")
-
-
-
-
-
-
-# Confirm Payment
-# @app.route("/pay/<string:merchant_req_id>/confirm_payment", methods=['POST'])
-# def confirm_payment(merchant_req_id):
-#     # payment = Transaction.query.get_or_404(merchant_req_id)
-#     payment = Transaction.query.filter_by(merchant_req_id=merchant_req_id).first()
-#     if payment:
-#         payment.user_id = current_user.id
-#         db.session.commit()
-#         flash('Your payment with Mpesa ref:  '+payment.mpesa_ref+ '  was Successful.', 'success')
-#         return redirect(url_for('transactions'))
-#     else:
-#         flash('Your payment with REQUEST ID:  '+merchant_req_id+ '  was NOT Successful.', 'danger')
-#         return redirect(url_for('transactions'))
-        
-
-
-
-
-
-
 # Confirm Payment
 @app.route("/pay/<string:merchant_req_id>/confirm_payment", methods=['POST'])
 def confirm_payment(merchant_req_id):
@@ -681,62 +527,6 @@ def confirm_payment(merchant_req_id):
 
 
 
-
-
-
-
-
-# @app.route('/users/<user_id>', methods=['PUT'])
-# def edit_user(user_id):
-#     user_id = request.form['edit_user_id']
-#     data = Users.query.filter_by(id==id).first()
-#     data = Users(name, email, phone, role, password, date)
-#     db.session.add(data)
-#     db.session.commit()
-
-# @app.route('/submit', methods=['POST', 'GET'])
-# def submit_user():
-#     if request.method == 'POST':
-#         name = request.form['name']
-#         email = request.form['email']
-#         phone = request.form['phone']
-#         role = request.form['role']
-#         password = request.form['password']
-#         date = datetime.today().strftime('%d-%m-%Y')
-
-#         if name == '' or email == '' or phone == '' or role == '' or password == '':
-#             return render_template('users.html', message='Please enter required fields.') 
-        
-#         data = Users(name, email, phone, role, password, date)
-#         db.session.add(data)
-#         db.session.commit()
-#         # return render_template('success.html')
-#         return render_template('users.html', message='User added successfully.')
-#         # return redirect("/users")
-#     elif request.method == 'GET':
-#         users = Users.query.all()
-#         return render_template('users.html', users=users)
-
-
-
-# @app.route('/submit', methods=['POST'])
-# def submit():
-#     if request.method == 'POST':
-#         customer = request.form['customer']
-#         dealer = request.form['dealer']
-#         rating = request.form['rating']
-#         comments = request.form['comments']
-#         # print(customer, dealer, rating, comments)
-#         if customer == '' or dealer == '':
-#             return render_template('index.html', message='Please enter required fields.') 
-#         if db.session.query(Feedback).filter(Feedback.customer == customer).count() == 0:
-#             data = Feedback(customer, dealer, rating, comments)
-#             db.session.add(data)
-#             db.session.commit()
-#             return render_template('success.html')
-#         return render_template('index.html', message='Hello '+customer+', you have already submitted feedback.')
-    
-
 def generate_access_token():
     consumer_key = "XZSPT4CIhfvAhRPdfq6EIkP1zcfHOFGigSb3fjueD4AKFKQO"
     consumer_secret = "jr04RpkXcvJsJwUHA3MMdgxS7lxwNyMiHujPOTpdOaGGGCLOIhyszxIDnDFL23bZ"
@@ -765,43 +555,3 @@ def generate_access_token():
         raise Exception("Failed to get access token: " + str(e))
     
 
-
-
-
-
-
-
-
-#  Delete all records in transactions table.
-@app.route("/del", methods=['POST', 'DELETE', 'GET'])
-def delete_rec():
-    from app import app, db
-    from datetime import datetime
-    bcrypt = Bcrypt()
-    date_val =  '2024-6-12'
-    date_value = datetime.strptime(date_val, "%Y-%m-%d")
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-        from app.models import Users, Budget
-        user1 = Users(name='John Doe', email='jon@gmail.com', phone='254722345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-        user2 = Users(name='New User', email='new@gmail.com', phone='254742345678', role='Staff', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-        user3 = Users(name='Pat Jenkins', email='pat@gmail.com', phone='254712345678', role='Admin', password=bcrypt.generate_password_hash('123').decode('utf-8'), date=date_value)
-        db.session.add(user1)
-        db.session.add(user2)
-        db.session.add(user3)
-        db.session.commit()
-    flash('Your Record has been Deleted!', 'success')
-    return redirect(url_for('budgets'))
-
-
-
-# @app.route("/del", methods=['POST', 'DELETE', 'GET'])
-# def delete_rec():
-
-#     # transactions = Transaction.query.all()
-#     db.session.query(Transaction).delete()
-#     db.session.commit()
-
-#     flash('Your Record has been Deleted!', 'success')
-#     return redirect(url_for('budgets'))
