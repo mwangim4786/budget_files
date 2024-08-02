@@ -1,78 +1,85 @@
-
 {% extends "page_template.html" %}
 {% block contents %}
 
-    <div class="content">
+<div class="content">
 
-        <section class="places">
+    <section class="places">
 
-            <div style="float: left;">
-                <h1>Files</h1>
+
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>{{ title }}</b></h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><b>File Number:</b> {{ file.file_no }}</li>
+                                <li class="list-group-item"><b>File Name:</b> {{ file.file_name }}</li>
+                                <li class="list-group-item"><b>Subject:</b> <span style="padding: 5px;" class="alert alert alert-warning alert-heading" role="alert"> {{ file.subject }} </span> </li>
+                                <li class="list-group-item"><b>File Fees:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> {{ file.file_fee }} </span> </li>
+                                {% if file_costs >= file.file_fee %}
+                                    <li class="list-group-item"><b>File Spend:</b> <span style="padding: 5px;" class="alert alert alert-danger alert-heading" role="alert"> {{ file_costs }} </span> </li>
+                                {% else %}
+                                    <li class="list-group-item"><b>File Spend:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> {{ file_costs }} </span> </li>
+                                {% endif %}
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Transactions summary for <b>{{ title }}</b></h5>
+                                            
+                            <table id="transactions_table" class="display" style="width:100%">
+                                <thead style="background: #055041; color: #FFFFFF">
+                                    <th class="text-center" style="padding: 5px; font-size: 10px;">Amount</th>
+                                    <th class="text-center" style="padding: 5px; font-size: 10px;">Date</th>
+                                    <th class="text-center" style="padding: 5px; font-size: 10px;">Mpesa Ref</th>
+                                    <th class="text-center" style="padding: 5px; font-size: 10px;">Budget</th>
+                                    <th class="text-center" style="padding: 5px; font-size: 10px;">User</th>
+                                    <th class="text-center" style="padding: 5px; font-size: 10px;">Desc.</th>
+                                </thead>
+                                <tbody>
+                                    
+                                    {% if transactions %}
+                                    
+                                        {% for transaction in transactions %}
+                                            <tr class="transactions_row">
+                                                <td class="text-center" style="padding: 5px; font-size: 10px;">{{ transaction['amount'] }}</td>
+                                                <td class="text-center" style="padding: 5px; font-size: 10px;">{{ transaction['trans_date'] }}</td>
+                                                <td class="text-center" style="padding: 5px; font-size: 10px;">{{ transaction.mpesa_ref }}</td>
+                                                <td class="text-center" style="padding: 5px; font-size: 10px;">{{ transaction.budget_id.bdgt_name }}</td>
+                                                <td class="text-center" style="padding: 5px; font-size: 10px;">{{ transaction.phone.name }}</td>
+                                                <td class="text-center" style="padding: 5px; font-size: 10px;">{{ transaction['narration'] }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    
+                                    {% endif %}
+                                    
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-           
-
-            <div style="overflow: hidden; float: right;">
-                <a href="{{ url_for('create_file') }}" style="text-decoration: none;"><button type="button" class="btn btn-outline-info mt-3 pb-0">Create File</button></a>
-            </div>
 
 
+            
 
-            <table id="transactions_table" class="display" style="width:100%">
-                <thead style="background: #055041; color: #FFFFFF">
-                    <th class="text-center" style="padding: 5px;">File No.</th>
-                    <th class="text-center" style="padding: 5px;">File Name</th>
-                    <th class="text-center" style="padding: 5px;">Subject</th>
-                    <th class="text-center" style="padding: 5px;">File Fee</th>
-                </thead>
-                <tbody>
-                    
-                    {% if files %}
-                    
-                        {% for file in files %}
-                        <tr class="files_row">
-                            <td class="text-center" style="padding: 5px;"><a href="{{ url_for('view_file', file_id=file.id) }}" style="text-decoration: none; color: inherit;"> {{ file.file_no }} </a></td>
-                            <td class="text-center" style="padding: 5px;">{{ file.file_name }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ file.subject }}</td>
-                            <td class="text-center" style="padding: 5px;">{{ file.file_fee }}</td>
-                        </tr>
-                        {% endfor %}
-                    
-                    {% endif %}
-                    
-                </tbody>
-            </table>
+        
+        
 
+    </section>
 
-
-
-        </section>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+</div>
 
 
 

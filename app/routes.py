@@ -510,10 +510,16 @@ def view_file(file_id):
     file_info = Files.query.get_or_404(file_id)
     fileName = file_info.file_name
     fileNo = file_info.file_no
+    file_totals = []
 
     transactions_per_file = Transaction.query.filter_by(file=fileNo).all()
+    for trns_cost in transactions_per_file:
+        cost = trns_cost.amount
+        file_totals.append(cost)
+    
+    file_costs = sum(file_totals)
 
-    return render_template('view_file.html', file=file_info, page='files', title=fileNo+" - "+fileName, transactions=transactions_per_file)
+    return render_template('view_file.html', file=file_info, page='files', title=fileNo+" - "+fileName, transactions=transactions_per_file, file_costs=file_costs)
 
 
 
