@@ -17,6 +17,11 @@
                                 <li class="list-group-item"><b>File Name:</b> {{ file.file_name }}</li>
                                 <li class="list-group-item"><b>Subject:</b> <span style="padding: 5px;" class="alert alert alert-warning alert-heading" role="alert"> {{ file.subject }} </span> </li>
                                 <li class="list-group-item"><b>File Fees:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> {{ file.file_fee }} </span> </li>
+                                {% if file_costs >= file.file_fee %}
+                                    <li class="list-group-item"><b>File Spend:</b> <span style="padding: 5px;" class="alert alert alert-danger alert-heading" role="alert"> {{ file_costs }} </span> </li>
+                                {% else %}
+                                    <li class="list-group-item"><b>File Spend:</b> <span style="padding: 5px;" class="alert alert alert-success alert-heading" role="alert"> {{ file_costs }} </span> </li>
+                                {% endif %}
                             </ul>
                             
                         </div>
