@@ -18,7 +18,9 @@ class Users(db.Model, UserMixin):
     role = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(60), nullable=False)
     date = db.Column(db.DateTime(), nullable=False, default=datetime.now)
+        # add column phone in table 'Transaction' for current user
     transactions = db.relationship('Transaction', backref='phone', lazy=True)
+        # add column phone in table 'Budget' for current user
     budgets = db.relationship('Budget', backref='phone', lazy=True)
 
     def __repr__(self):
@@ -43,6 +45,7 @@ class Budget(db.Model):
     status = db.Column(db.Integer, nullable=False, default=0)
     approved_by = db.Column(db.String(200), nullable=False, default='0')
     user_id = db.Column(db.Integer, db.ForeignKey(Users.id), nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     transactions = db.relationship('Transaction', backref='budget_id', lazy=True)
     
     def __repr__(self):
